@@ -1,0 +1,27 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Head</title>
+<link href="Main.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="jquery-1.11.1.js"></script>
+</head>
+
+<body id="head">
+<div id="logo">
+<span>山寨教务管理系统</span>
+</div>
+<div id="userName">[用户名]</div>
+<div id="logout">
+<img src="img/1401527178_common_logout_signout_exit_.png" width="20px" height="20px" title="Logout" />
+</div>
+<script>
+$("#head div").mouseout(function(e) {
+    $(this).css("background-color","#0066FF");
+});
+$("#head div").mouseover(function(e) {
+    $(this).css("background-color","#00337f");
+});
+</script>
+</body>
+</html>

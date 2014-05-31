@@ -1,0 +1,61 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Menu</title>
+<link href="Main.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+#root ul {
+	display: none;
+}
+</style>
+<script type="text/javascript" src="jquery-1.11.1.js"></script>
+</head>
+
+<body id="menu">
+<ul id="root">
+<a href="Notice.html" target="main"><li id="notice" class="list1">教务通知</li></a>
+<a href="Person.html" target="main"><li id="person" class="list1">个人信息</li></a>
+<a><li id="course" class="list1">课程管理</li></a>
+<ul id="courseMenu">
+<a target="main"><li id="newCourse" class="list2 course student">选课</li></a>
+<a target="main"><li id="studingCourse" class="list2 course student">课程表</li></a>
+<a target="main"><li id="studiedCourse" class="list2 course student">已修课</li></a>
+<a target="main"><li id="applyCourse" class="list2 course teacher">开课</li></a>
+<a target="main"><li id="teachingCourse" class="list2 course teacher">授课表</li></a>
+<a target="main"><li id="taughtCourse" class="list2 course teacher">已授课</li></a>
+</ul>
+<a><li id="system" class="list1">系统管理</li></a>
+<ul id="systemMenu">
+<a target="main"><li id="keywordManage" class="list2 system">密码管理</li></a>
+<a target="main"><li id="userManage" class="list2 system admin">用户管理</li></a>
+<a target="main"><li id="noticeManage" class="list2 system admin">通知管理</li></a>
+</ul>
+</ul>
+<script>
+$("#root li").mouseout(function() {
+	$(this).css("background-color","#EEE");
+});
+
+$("#root li").mouseover(function() {
+	$(this).css("background-color","#CCC");
+});
+
+$("#root li").mousedown(function(e) {
+	$(this).css("background-color","#AAA");
+});
+
+$("#root li").mouseup(function(e) {
+	$(this).css("background-color","#CCC");
+});
+
+$("#course").click(function(e) {
+    $("#courseMenu").slideToggle();
+});
+
+$("#system").click(function(e) {
+    $("#systemMenu").slideToggle();
+});
+</script>
+</body>
+</html>
