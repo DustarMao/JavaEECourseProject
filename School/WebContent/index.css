@@ -55,25 +55,26 @@ div {
 	padding: 0 10px;
 }
 
-#logout {
+#title {
+	font-size: 150%;
+	line-height: 40px;
+	padding: 0 5px;
+}
+
+.btn {
+	background-color: #0066FF;
 	padding: 10px;
 	position: absolute;
 	right: 0;
-	top: 0;
+	bottom: 0;
 }
 
-#user {
+#infor {
 	padding: 0 5px;
 	line-height: 40px;
 	position: absolute;
 	right: 40px;
 	top: 0;
-}
-
-#title {
-	font-size: 150%;
-	line-height: 40px;
-	padding: 0 5px;
 }
 
 #user span {
@@ -100,4 +101,37 @@ ul {
 	padding-top: 2px;
 	padding-bottom: 2px;
 	margin-top: 0;
+}
+/* login */
+#login {
+	position: fixed;
+	top: 0;
+	right: 0;
+	width: 240px;
+}
+#login #input {
+	background-color: #FFF;
+	width: 236px;
+	height: 70px;
+	border-style: solid;
+	border-color: #0066FF;
+	border-width: 0 2px;
+}
+#login #input div {
+	width: 200px;
+	margin: 10px 20px;
+}
+#login #input div input {
+	position: absolute;
+	right: 20px;
+}
+#btnLogin span {
+	position: relative;
+	background-color: #0066FF;
+	color: #FFFFFF;
+	line-height: 40px;
+	text-align: center;
+	width: 200px;
+	display: inline-block;
+	z-index: 1;
 }
