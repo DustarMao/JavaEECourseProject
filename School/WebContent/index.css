@@ -42,6 +42,8 @@ div {
 	left: 180px;
 	overflow-x: auto;
 	overflow-y: scroll;
+	margin-top: 20px;
+	margin-left: 20px;
 }
 /* Head */
 #head div {
