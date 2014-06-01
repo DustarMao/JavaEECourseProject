@@ -5,8 +5,11 @@
 
 <%
 	// This part is for Test
-	User test = new User(0,true,true);
+	User test = new User(0,true,true,"测试员");
 	session.setAttribute("user", test);
+%>
+<%
+	User user = (User)session.getAttribute("user");
 %>
 <html>
 
@@ -23,9 +26,9 @@
     	<span id="title">山寨教务管理系统</span>
     </div>
     <div id="user">
-    	<span id="uID">[ID]</span>
-    	<span id="uName">[用户名]</span>
-    	<span id="uType">[类型]</span>
+    	<span id="uID"><%=user.getuID() %></span>
+    	<span id="uName"><%=user.getName() %></span>
+    	<span id="uType"><%=user.isAdmin()?"管理员":(user.isStude()?"学生":"教师") %></span>
     </div>
     <div id="logout">
     	<img src="img/1401527178_common_logout_signout_exit_.png" width="20" height="20" title="注销" />
