@@ -1,5 +1,8 @@
 package edu.tongji.sse.j2ee.bean;
 
+import edu.tongji.sse.j2ee.errors.UserIdNotFound;
+import edu.tongji.sse.j2ee.errors.WrongPassword;
+
 public class User {
 	private int uID;
 	private boolean stude;
@@ -8,7 +11,8 @@ public class User {
 	
 	public User() {}
 	
-	public User(String ID, String name) {
+	public User(String ID, String password) 
+			throws UserIdNotFound,WrongPassword {
 		// TODO
 	}
 	

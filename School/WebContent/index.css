@@ -11,6 +11,8 @@ body {
 
 div {
 	margin: 0;
+	overflow-x: hidden;
+	overflow-y: hidden;
 }
 
 #head {
@@ -38,6 +40,8 @@ div {
 	position: fixed;
 	top: 40px;
 	left: 180px;
+	overflow-x: auto;
+	overflow-y: scroll;
 }
 /* Head */
 #head div {
@@ -79,7 +83,7 @@ ul {
 	padding-left: 0;
 }
 
-#menu li span{
+#menu li a{
 	font-size: 120%;
 	display: block;
 	padding-left: 20px;
@@ -88,7 +92,7 @@ ul {
 	margin-top: 5px;
 }
 
-#menu li ul li span{
+#menu li ul li a{
 	font-size: 100%;
 	padding-left: 40px;
 	padding-top: 2px;
