@@ -1,0 +1,97 @@
+@CHARSET "UTF-8";
+
+* {
+	font-family: "Microsoft Yahei UI","Microsoft Yahei",Verdana,Simsun,"Segoe UI","Segoe UI Web Regular","Segoe UI Symbol","Helvetica Neue","BBAlpha Sans","S60 Sans",Arial,sans-serif;
+	list-style-type: none;
+}
+
+body {
+	margin: 0;
+}
+
+div {
+	margin: 0;
+}
+
+#head {
+	height: 40px;
+	width: 100%;
+	background-color: #0066FF;
+	color: #FFFFFF;
+	position:fixed;
+	top: 0;
+	left: 0;
+}
+
+#side {
+	height: 100%;
+	width: 180px;
+	background-color: #EEEEEE;
+	position: fixed;
+	top: 40px;
+	left: 0;
+}
+
+#main {
+	height: 100%;
+	width: 100%;
+	position: fixed;
+	top: 40px;
+	left: 180px;
+}
+/* Head */
+#head div {
+	display: inline-block;
+}
+
+#logo {
+	height: 100%;
+	padding: 0 10px;
+}
+
+#logout {
+	padding: 10px;
+	position: absolute;
+	right: 0;
+	top: 0;
+}
+
+#user {
+	padding: 0 5px;
+	line-height: 40px;
+	position: absolute;
+	right: 40px;
+	top: 0;
+}
+
+#title {
+	font-size: 150%;
+	line-height: 40px;
+	padding: 0 5px;
+}
+
+#user span {
+	line-height: 40px;
+	margin: 0 5px;
+}
+/* Menu */
+ul {
+	padding-left: 0;
+}
+
+#menu li span{
+	font-size: 120%;
+	display: block;
+	padding-left: 20px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	margin-top: 5px;
+}
+
+#menu li ul li span{
+	font-size: 100%;
+	padding-left: 40px;
+	padding-top: 2px;
+	padding-bottom: 2px;
+	margin-top: 0;
+}
