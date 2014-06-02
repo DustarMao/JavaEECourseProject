@@ -1,10 +1,15 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"
+	import="edu.tongji.sse.j2ee.bean.*"
+%>
+<!--
+<%=((User)session.getAttribute("user")).isStude()%>
+<%=((User)session.getAttribute("user")).isAdmin()%>
+-->
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>Menu</title>
 </head>
 <body>
 	<ul id="menu">
@@ -97,6 +102,16 @@ $("#noticeMana").click(function(e) {
 $("#passwordMana").click(function(e) {
     $("#main").load("pages/system/password.jsp");
 });
+</script>
+<script>
+if (<%=((User)session.getAttribute("user")).isStude()%>)
+	$(".teacher").remove();
+else
+	$(".student").remove();
+if (<%=((User)session.getAttribute("user")).isAdmin()%>)
+	$(".normal").remove();
+else
+	$(".admin").remove();
 </script>
 </body>
 </html>

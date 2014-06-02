@@ -4,18 +4,30 @@ import edu.tongji.sse.j2ee.errors.UserIdNotFound;
 import edu.tongji.sse.j2ee.errors.WrongPassword;
 
 public class User {
-	private int uID;
+	final private int uID;
 	private boolean stude;
 	private boolean admin;
 	private String name;
 	private String phone;
 	private String email;
 	
-	public User() {}
+	public User() {
+		uID = 0;
+		stude = false;
+		admin = false;
+		name = "";
+	}
 	
 	public User(String ID, String password) 
 			throws UserIdNotFound,WrongPassword {
-		// TODO
+		if (ID == null)
+			throw new UserIdNotFound();
+		uID=Integer.parseInt(ID);
+		if (password == null)
+			throw new WrongPassword();
+		name="test";
+		stude = false;
+		admin = false;
 	}
 	
 	public User(int uID, boolean isStudent, boolean isAdmin, String name) {

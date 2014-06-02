@@ -20,9 +20,10 @@ div {
 	width: 100%;
 	background-color: #0066FF;
 	color: #FFFFFF;
-	position:fixed;
+	position: fixed;
 	top: 0;
 	left: 0;
+	z-index: -1;
 }
 
 #side {
@@ -60,27 +61,6 @@ div {
 	line-height: 40px;
 	padding: 0 5px;
 }
-
-.btn {
-	background-color: #0066FF;
-	padding: 10px;
-	position: absolute;
-	right: 0;
-	bottom: 0;
-}
-
-#infor {
-	padding: 0 5px;
-	line-height: 40px;
-	position: absolute;
-	right: 40px;
-	top: 0;
-}
-
-#user span {
-	line-height: 40px;
-	margin: 0 5px;
-}
 /* Menu */
 ul {
 	padding-left: 0;
@@ -102,12 +82,13 @@ ul {
 	padding-bottom: 2px;
 	margin-top: 0;
 }
-/* login */
-#login {
+/* corner */
+#corner {
 	position: fixed;
 	top: 0;
 	right: 0;
-	width: 240px;
+	min-height: 40px;
+	min-width: 240px;
 }
 #login #input {
 	background-color: #FFF;
@@ -134,4 +115,26 @@ ul {
 	width: 200px;
 	display: inline-block;
 	z-index: 1;
+}
+
+.btn {
+	background-color: #0066FF;
+	padding: 10px;
+	position: absolute;
+	right: 0;
+	bottom: 0;
+}
+
+#infor {
+	padding: 0 5px;
+	line-height: 40px;
+	position: fixed;
+	right: 40px;
+	top: 0;
+}
+
+#infor span {
+	line-height: 40px;
+	margin: 0 5px;
+	color: #FFFFFF;
 }
