@@ -37,6 +37,15 @@ public class User {
 		this.name = name;
 	}
 	
+	public User(User user) {
+		this.uID = user.uID;
+		this.stude = user.stude;
+		this.admin = user.admin;
+		this.name = user.name;
+		this.phone = user.phone;
+		this.email = user.email;
+	}
+
 	public int getuID() {
 		return uID;
 	}

@@ -1,0 +1,10 @@
+{"teachingCourse":[
+{"cID":"IDXXXX1","name":"JavaEE","time":"Feb. 15:00~17:00","place":"Building B, Room 2"},
+{"cID":"IDYYYY1","name":"DataBase","time":"Feb. 15:00~17:00","place":"Building B, Room 2"},
+{"cID":"IDXXXX2","name":"JavaEE","time":"Feb. 15:00~17:00","place":"Building B, Room 2"},
+{"cID":"IDYYYY2","name":"DataBase","time":"Feb. 15:00~17:00","place":"Building B, Room 2"},
+{"cID":"IDXXXX3","name":"JavaEE","time":"Feb. 15:00~17:00","place":"Building B, Room 2"},
+{"cID":"IDYYYY3","name":"DataBase","time":"Feb. 15:00~17:00","place":"Building B, Room 2"},
+{"cID":"IDXXXX4","name":"JavaEE","time":"Feb. 15:00~17:00","place":"Building B, Room 2"},
+{"cID":"IDYYYY4","name":"DataBase","time":"Feb. 15:00~17:00","place":"Building B, Room 2"}
+]}

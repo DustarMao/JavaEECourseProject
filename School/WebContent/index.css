@@ -36,15 +36,12 @@ div {
 }
 
 #main {
-	height: 100%;
-	width: 100%;
 	position: fixed;
 	top: 40px;
 	left: 180px;
 	overflow-x: auto;
-	overflow-y: scroll;
-	margin-top: 20px;
-	margin-left: 20px;
+	overflow-y: auto;
+	z-index: -1;
 }
 /* Head */
 #head div {
