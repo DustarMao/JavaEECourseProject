@@ -1,0 +1,17 @@
+{"taughtCourse":[
+	{"term":"2013~2014Term1",
+	"courses":[
+		{"cID":"IDXXXX2","name":"JavaEE","time":"Feb. 15:00~17:00","place":"Building B, Room 2"},
+		{"cID":"IDYYYY2","name":"DataBase","time":"Feb. 15:00~17:00","place":"Building B, Room 2"}
+	]},
+	{"term":"2012~2014Term2",
+	"courses":[
+		{"cID":"IDXXXX3","name":"JavaEE","time":"Feb. 15:00~17:00","place":"Building B, Room 2"},
+		{"cID":"IDYYYY3","name":"DataBase","time":"Feb. 15:00~17:00","place":"Building B, Room 2"}
+	]},
+	{"term":"2012~2013Term1",
+	"courses":[
+		{"cID":"IDXXXX4","name":"JavaEE","time":"Feb. 15:00~17:00","place":"Building B, Room 2"},
+		{"cID":"IDYYYY4","name":"DataBase","time":"Feb. 15:00~17:00","place":"Building B, Room 2"}
+	]}
+]}

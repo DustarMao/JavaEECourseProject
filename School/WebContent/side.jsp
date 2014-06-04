@@ -43,20 +43,22 @@
     </ul>
 	<script>
 	$("#menu a").mouseout(function() {
-		$(this).css("background-color","#EEE");
+		if (!$(this).hasClass("choosen"))
+			$(this).css("background-color","#EEE");
 	});
 	
 	$("#menu a").mouseover(function() {
-		$(this).css("background-color","#CCC");
+		if (!$(this).hasClass("choosen"))
+			$(this).css("background-color","#DEF");
 	});
 	
-	$("#menu a").mousedown(function(e) {
-		$(this).css("background-color","#AAA");
-	});
+	$("#menu a").click(function(e) {
+        if (!$(this).hasClass("choosen")) {
+			$("#menu a").removeClass("choosen").css("background-color","#EEE");
+			$(this).addClass("choosen").css("background-color","#CEF");
+		}
+    });
 	
-	$("#menu a").mouseup(function(e) {
-		$(this).css("background-color","#CCC");
-	});
 	$("#menu li a").click(function(e) {
         $(this).parent().children("ul").slideToggle();
     });

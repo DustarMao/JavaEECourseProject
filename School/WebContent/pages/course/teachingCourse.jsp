@@ -21,26 +21,57 @@ h2 {
 }
 div#courses {
 	width: 300px;
-	margin-bottom: 20px;
-	margin-left: 20px;
-	margin-right: 0px;
-	margin-top: 20px;
+	min-height: 100%;
+	float: left;
+	background-color: #CEF;
+}
+div.term{
+	padding: 10px 0 10px 10px;
+	border-top: thick solid #6699FF;
+	border-left: thick solid #CCEEFF;
 }
 div.course {
-	margin: 20px 0;
+	padding: 10px 0 10px 20px;
+	border-left: thick solid #CCEEFF;
 }
-div.view {
-	margin: 5px 30px;
+div#viewStudents {
+	position: fixed;
+	top: 40px;
+	left: 480px;
+	right: 0;
+	bottom: 0;
 	overflow-y: auto;
-	overflow-x: auto;
+}
+div#viewStudents table {
+	width: 100%;
+	border-collapse: collapse;
+	border-left: none;
+	border-right: none;
+}
+div#viewStudents th, div#viewStudents td {
+	border: thin solid #39F;
+	padding: 3px 7px;
+	text-align: right;
+}
+div#viewStudents th {
+	text-align: center;
+}
+div#viewStudents thead {
+	color: #FFF;
+	background-color: #69F;
 }
 </style>
 </head>
 <body id="main">
+<div id="courses">
+</div>
+<div id="viewStudents">
+</div>
 <script>
-$.getJSON("TestData/teachingCourse.json",null,
+$.getJSON("TestData/Courses.json",null,	// The URL should be "TeachingCourse", the Data should be sth from session
 	function callback(json) {
-		$(json.teachingCourse).each(function(index, element) {
+		$(json.currentTerm.courses).each(function(index, element) {
+			course=this;
 			cDiv=$("#courses").append("<div/>").children().last().attr("id",this.cID).addClass("course");
 			cDiv.append("<span/>").children().last().addClass("courseId").text(this.cID);
 			cDiv.append("<h2/>").children().last().addClass("courseName").text(this.name);
@@ -48,11 +79,44 @@ $.getJSON("TestData/teachingCourse.json",null,
 			cDiv.append("<br/>");
 			cDiv.append("<span/>").children().last().addClass("courseLocal").text(this.place);
 			cDiv.append("<br/>");
-			cDiv.append("<a/>").children().last().addClass("courseListen").text("Students");
+			cDiv.mouseover(function(e) {
+                if (!$(this).hasClass("choosen"))
+					$(this).css("background-color","#DEF");
+            });
+			cDiv.mouseout(function(e) {
+                if (!$(this).hasClass("choosen"))
+					$(this).css("background-color","#CEF");
+            });
+			cDiv.click(function(e) {
+                if (!$(this).hasClass("choosen")) {
+					$(".course").removeClass("choosen").css("background-color","#CEF");
+					$(this).addClass("choosen").css("background-color","#FFF");
+					$.getJSON("TestData/CourseInfor.json",null,	// Test URL & DATA
+						function callback(json) {
+							vTable=$("#viewStudents").empty()
+								.append("<p/>").children().last().text("Students of "+json.CourseInfor.name+"("+json.CourseInfor.cID+"):").css("margin","20px")
+								.append("<table/>").children().last();
+							vTable.prepend("<thead/>").children().first().append("<tr/>").children().last()
+								.append("<th>ID</th>")
+								.append("<th>Name</th>")
+								.append("<th>Sex</th>")
+								.append("<th>Phone</th>")
+								.append("<th>Email</th>");
+							vTable=vTable.append("<tbody/>").children().last();
+							$(json.CourseInfor.students).each(function(index, element) {
+                                vStu=vTable.append("<tr/>").children().last().attr("id",this.ID).addClass("student");
+								vStu.append("<td/>").children().last().addClass("ID").text(this.ID);
+								vStu.append("<td/>").children().last().addClass("name").text(this.name);
+								vStu.append("<td/>").children().last().addClass("sex").text(this.sex);
+								vStu.append("<td/>").children().last().addClass("phone").text(this.phone);
+								vStu.append("<td/>").children().last().addClass("email").text(this.email);
+                            });
+						});
+				}
+            });
         });
+		$("#courses div").first().css("margin-top","10px").click();
 	});
 </script>
-<div id="courses">
-</div>
 </body>
 </html>

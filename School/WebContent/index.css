@@ -17,31 +17,34 @@ div {
 
 #head {
 	height: 40px;
-	width: 100%;
 	background-color: #0066FF;
 	color: #FFFFFF;
 	position: fixed;
 	top: 0;
 	left: 0;
+	right: 0;
 	z-index: -1;
 }
 
 #side {
-	height: 100%;
 	width: 180px;
 	background-color: #EEEEEE;
 	position: fixed;
 	top: 40px;
 	left: 0;
+	bottom: 0;
 }
 
 #main {
 	position: fixed;
 	top: 40px;
 	left: 180px;
-	overflow-x: auto;
+	right: 0;
+	bottom: 0;
+	overflow-x: hidden;
 	overflow-y: auto;
 	z-index: -1;
+	border-left: thick solid #CEF:
 }
 /* Head */
 #head div {
@@ -70,6 +73,7 @@ ul {
 	padding-top: 5px;
 	padding-bottom: 5px;
 	margin-top: 5px;
+	border-left: thick solid #EEE;
 }
 
 #menu li ul li a{

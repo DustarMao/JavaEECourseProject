@@ -43,7 +43,7 @@ TEXT-ALIGN: center; PADDING-BOTTOM: 0px; MARGIN: 0px auto; PADDING-LEFT: 10px; W
 <DIV id=logo>
 <IMG alt=教务系统 src="img/log.png"></DIV>
 <DIV id=login>
-<FORM id=loginform method=post action="/admin/">
+<FORM id=loginform method=post action="LoginServlet">
 <INPUT value=用户名   type=hidden name=key> 
 <INPUT value=密码    type=hidden name=code>
  <P id=info>请输入用户名和密码</P>
@@ -51,9 +51,7 @@ TEXT-ALIGN: center; PADDING-BOTTOM: 0px; MARGIN: 0px auto; PADDING-LEFT: 10px; W
 <DIV class=control-group><SPAN class=icon-lock></SPAN><INPUT type=password name=password placeholder="Password"> </DIV>
 <DIV class=login-btn><INPUT id=login-btn value="登 录" type=submit name=submit></DIV>
 </FORM>
-<FORM id=forgotform class=hide method=post action="/">
-<DIV class=control-group><SPAN class=icon-mail></SPAN><INPUT type=text name=email placeholder="Email"> </DIV>
-<DIV class="login-btn forget-btn"><INPUT id=forget-btn value="提 交" type=submit></DIV></FORM></DIV>
+</DIV>
 <DIV id=login-copyright>2014 同济软院 </DIV>
 <SCRIPT type=text/javascript src="jquery-1.11.1.js"></SCRIPT>
 <SCRIPT>$(document).ready(function() { $("#logo").css("margin-top", ($(window).height()-460)/2+"px");

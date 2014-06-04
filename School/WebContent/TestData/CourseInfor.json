@@ -1,0 +1,18 @@
+{"CourseInfor":{
+	"cID":"ID??????",
+	"name":"TestCourse",
+	"teacher":"TestTeacher",
+	"students":[
+		{"ID":"IDXXXX1","name":"Test StudentX","sex":"male","phone":"+86XXXXXXXXXXX","email":"XXXXXXXX@XXXX.com","grades":""},
+		{"ID":"IDXXXX2","name":"Test StudentY","sex":"female","phone":"+86XXXXXXXXXXX","email":"XXXXXXXX@XXXX.com","grades":""},
+		{"ID":"IDXXXX3","name":"Test StudentZ","sex":"female","phone":"+86XXXXXXXXXXX","email":"XXXXXXXX@XXXX.com","grades":""},
+		{"ID":"IDXXXX4","name":"Test StudentA","sex":"male","phone":"+86XXXXXXXXXXX","email":"XXXXXXXX@XXXX.com","grades":""},
+		{"ID":"IDXXXX5","name":"Test StudentB","sex":"male","phone":"+86XXXXXXXXXXX","email":"XXXXXXXX@XXXX.com","grades":""},
+		{"ID":"IDXXXX6","name":"Test StudentC","sex":"male","phone":"+86XXXXXXXXXXX","email":"XXXXXXXX@XXXX.com","grades":""},
+		{"ID":"IDXXXX7","name":"Test StudentD","sex":"male","phone":"+86XXXXXXXXXXX","email":"XXXXXXXX@XXXX.com","grades":""},
+		{"ID":"IDXXXX8","name":"Test StudentE","sex":"male","phone":"+86XXXXXXXXXXX","email":"XXXXXXXX@XXXX.com","grades":""},
+		{"ID":"IDXXXX9","name":"Test StudentF","sex":"female","phone":"+86XXXXXXXXXXX","email":"XXXXXXXX@XXXX.com","grades":""},
+		{"ID":"IDXXX10","name":"Test StudentG","sex":"male","phone":"+86XXXXXXXXXXX","email":"XXXXXXXX@XXXX.com","grades":""},
+		{"ID":"IDXXX11","name":"Test StudentH","sex":"male","phone":"+86XXXXXXXXXXX","email":"XXXXXXXX@XXXX.com","grades":""}
+	]
+}}
