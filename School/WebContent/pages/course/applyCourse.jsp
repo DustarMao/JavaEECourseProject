@@ -7,6 +7,7 @@
 <title>开课</title>
 </head>
 <body>
-开课
+<h1>申请新课程</h1>
+
 </body>
 </html>

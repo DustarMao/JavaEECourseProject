@@ -44,7 +44,7 @@ div {
 	overflow-x: hidden;
 	overflow-y: auto;
 	z-index: -1;
-	border-left: thick solid #CEF:
+	border-left: thick solid #CEF;
 }
 /* Head */
 #head div {

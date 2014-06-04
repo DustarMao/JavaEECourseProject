@@ -3,8 +3,10 @@
 %>
 <%
 	User user = (User)session.getAttribute("user");
-	if (user==null)
-	response.sendRedirect("login.jsp");
+	if (user==null) {
+		response.sendRedirect("login.jsp");
+		return;
+	}
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -43,6 +45,8 @@
 	$(".clickable").mouseup(function(e) {
 		$(this).css("background-color","#0066CC");
 	});
+	$("#side").load("side.jsp");
+	$("#side").fadeIn();
 	</script>
 </body>
 </html>

@@ -68,7 +68,7 @@ $("#notice").click(function(e) {
     $("#main").load("pages/notice.jsp");
 });
 $("#person").click(function(e) {
-    $("#main").load("pages/person.jsp");
+    $("#main").load("pages/personInfor.html");	// Test Version
 });
 $("#newCourse").click(function(e) {
     $("#main").load("pages/course/choiceCourse.jsp");

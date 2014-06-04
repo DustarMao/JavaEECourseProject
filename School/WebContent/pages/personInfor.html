@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<style type="text/css">
+body{font-family: Georgia;font-size:20px;}
+input{display:none;padding:0em 0em;
+line-height:0;
+height:28px;
+font-size:20px;}
+button{line-height:0;}
+tr{height:30px;}
+th{background-color:#CEF;padding:0.2em 0.2em;}
+td{background-color:#D3D3D3;}
+
+</style>
+
+<script src="jquery-1.11.1.js"></script>
+<script type="text/javascript">
+
+$(document).ready(function(){
+  $("#change1").click(function(){
+    $(".name1").toggle();$("#input1").toggle();});});
+$(document).ready(function(){
+  $("#change2").click(function(){
+    $(".sex1").toggle();$("#input2").toggle();});});
+$(document).ready(function(){
+  $("#change3").click(function(){
+    $(".birth1").toggle();$("#input3").toggle();});});
+$(document).ready(function(){
+  $("#change4").click(function(){
+    $(".ID1").toggle();$("#input4").toggle();});});
+$(document).ready(function(){
+  $("#change5").click(function(){
+    $(".status1").toggle();$("#input5").toggle();});});
+
+$(document).ready(function(){
+  $("table tr td button").click(function() {
+    if($(this).children("p").text()=="变更")
+	{$(this).children("p").text("保存");}
+    else
+	{$(this).children("p").text("变更");}
+    });
+});
+
+</script>
+</head>
+
+<body>
+
+<table>
+<tr>
+  <th>姓名</th>
+  <td style="width:205px"><input type=text id="input1" style="width:200px" onclick="this.value=''"/><p class="name1" style="margin:0"></p></td>
+  <td><button id="change1" type="button"><p>变更</p></button></td>
+</tr>
+<tr>
+  <th>性别</th>
+  <td style="width:205px"><input type=text id="input2" style="width:200px" onclick="this.value=''"/><p class="sex1" style="margin:0"></p></td>
+  <td><button id="change2" type="button"><p>变更</p></button></td>
+</tr>
+<tr>
+  <th>出生日期</th>
+  <td style="width:205px"><input type=text id="input3" style="width:200px" onclick="this.value=''"/><p class="birth1" style="margin:0"></p></td>
+  <td><button id="change3" type="button"><p>变更</p></button></td>
+</tr>
+<tr>
+  <th>身份证号</th>
+  <td style="width:205px"><input type=text id="input4" style="width:200px" onclick="this.value=''"/><p class="ID1" style="margin:0"></p></td>
+  <td><button id="change4" type="button"><p>变更</p></button></td>
+</tr>
+<tr>
+  <th>政治面貌</th>
+  <td style="width:205px"><input type=text id="input5" style="width:200px" onclick="this.value=''"/><p class="status1" style="margin:0"></p></td>
+  <td><button id="change5" type="button"><p>变更</p></button></td>
+</tr>
+</table>
+</body>
+
+<script>
+
+person={
+"name" : "学生一",
+"sex" : "男",
+"birth" : "1994年12月14日",
+"ID" : "230713199412140987",
+"status" : "团员"};
+
+$(document).ready(function(){
+  $(".name1").text(person.name);});
+$(document).ready(function(){
+  $(".sex1").text(person.sex);});
+$(document).ready(function(){
+  $(".birth1").text(person.birth);});
+$(document).ready(function(){
+  $(".ID1").text(person.ID);});
+$(document).ready(function(){
+  $(".status1").text(person.status);});
+
+
+$(document).ready(function(){
+  $("#change1").click(function(){
+    $(".name1").text($("#input1").val());});});
+$(document).ready(function(){
+  $("#change2").click(function(){
+    $(".sex1").text($("#input2").val());});});
+$(document).ready(function(){
+  $("#change3").click(function(){
+    $(".birth1").text($("#input3").val());});});
+$(document).ready(function(){
+  $("#change4").click(function(){
+    $(".ID1").text($("#input4").val());});});
+$(document).ready(function(){
+  $("#change5").click(function(){
+    $(".status1").text($("#input5").val());});});
+
+$(document).ready(function(){
+  $("#input1").val($(".name1").text());});
+$(document).ready(function(){
+  $("#input2").val($(".sex1").text());});
+$(document).ready(function(){
+  $("#input3").val($(".birth1").text);});
+$(document).ready(function(){
+  $("#input4").val($(".ID1").text);});
+$(document).ready(function(){
+  $("#input5").val($(".status1").text);});
+
+
+</script>
+</html>

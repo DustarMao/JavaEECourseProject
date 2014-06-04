@@ -1,6 +1,6 @@
-ï»¿<!DOCTYPE html>
+<!DOCTYPE html>
 <HTML><HEAD>
-<TITLE>å±±å¯¨æ•™åŠ¡ç³»ç»Ÿ</TITLE>
+<TITLE>É½Õ¯½ÌÎñÏµÍ³</TITLE>
 <style>
 BODY{PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; 
 FONT-FAMILY: "Arial"; 
@@ -41,23 +41,35 @@ TEXT-ALIGN: center; PADDING-BOTTOM: 0px; MARGIN: 0px auto; PADDING-LEFT: 10px; W
 </HEAD>
 <BODY>
 <DIV id=logo>
-<IMG alt=æ•™åŠ¡ç³»ç»Ÿ src="img/log.png"></DIV>
+<IMG alt=½ÌÎñÏµÍ³ src="img/log.png"></DIV>
 <DIV id=login>
 <FORM id=loginform method=post action="LoginServlet">
-<INPUT value=ç”¨æˆ·å   type=hidden name=key> 
-<INPUT value=å¯†ç     type=hidden name=code>
- <P id=info>è¯·è¾“å…¥ç”¨æˆ·åå’Œå¯†ç </P>
+<INPUT value=ÓÃ»§Ãû   type=hidden name=key> 
+<INPUT value=ÃÜÂë    type=hidden name=code>
+ <P id=info>ÇëÊäÈëÓÃ»§ÃûºÍÃÜÂë</P>
 <DIV class=control-group><SPAN class=icon-user></SPAN><INPUT type=text name=username placeholder="Username"></DIV>
 <DIV class=control-group><SPAN class=icon-lock></SPAN><INPUT type=password name=password placeholder="Password"> </DIV>
-<DIV class=login-btn><INPUT id=login-btn value="ç™» å½•" type=submit name=submit></DIV>
+<DIV class=login-btn><INPUT id=login-btn value="µÇ Â¼" type=submit name=submit></DIV>
 </FORM>
 </DIV>
-<DIV id=login-copyright>2014 åŒæµè½¯é™¢ </DIV>
+<DIV id=login-copyright>2014 Í¬¼ÃÈíÔº </DIV>
 <SCRIPT type=text/javascript src="jquery-1.11.1.js"></SCRIPT>
-<SCRIPT>$(document).ready(function() { $("#logo").css("margin-top", ($(window).height()-460)/2+"px");
-$("input[name='username']").focus();$("#forget-password").click(function (e) {$("#loginform").hide();
-$("#forgotform").show(200);e.preventDefault();});$("#forget-btn").click(
-		function (e) 
-		{	$("#loginform").slideDown(200);$("#forgotform").slideUp(200);e.preventDefault();});
-		});</SCRIPT>
+<SCRIPT>
+$(document).ready(function() {
+	$("#logo").css("margin-top", ($(window).height()-460)/2+"px");
+	$("input[name='username']").focus();
+	$("#login-btn").click(function(e) {
+		$.post("LoginServlet",{
+			uID: $("input[name=username").val(),
+			uPass: $("input[name=password]").val()
+		},function(data,textStatus,jqXHR){
+			if (data=="success") {
+				location.href = "index.html";
+			}
+			else
+				alert("Error\nType:\t"+data+"\nID:\t"+$("input[name=username]").val());
+		})
+	});
+});
+</SCRIPT>
 </BODY></HTML>

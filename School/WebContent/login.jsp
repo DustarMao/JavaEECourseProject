@@ -47,8 +47,8 @@
 					$("#input").slideUp("fast",function() {
 						$("#corner").load("userInfor.jsp");
 					});
-					$("#side").load("side.jsp");
-					$("#side").fadeIn();
+					
+					
 				}
 				else
 					alert("Error\nType:\t"+data+"\nID:\t"+$("#userID").val());
