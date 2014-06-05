@@ -1,11 +1,14 @@
-package edu.tongji.sse.j2ee.servlet;
+﻿package edu.tongji.sse.j2ee.servlet;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import edu.tongji.sse.j2ee.bean.User;
 
 /**
  * Servlet implementation class ChangePassword
@@ -23,24 +26,33 @@ public class ChangePassword extends HttpServlet {
     }
 
 	/**
-	 * @see HttpServlet#service(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-	}
-
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-	}
-
-	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		User user = (User) request.getSession().getAttribute("user");
+		response.setCharacterEncoding("UTF-8");
+		if (user==null) {
+			response.getWriter().print("用户不存在");
+			return;
+		}
+		if (user.isPassword(request.getParameter("oPass"))) {
+			if (request.getParameter("nPass")=="") {
+				response.getWriter().print("输入新密码");
+				return;
+			}
+			if (user.setPassword(request.getParameter("nPass"), request.getParameter("oPass"))) {
+				response.getWriter().print("密码修改成功");
+				return;
+			}
+			else {
+				response.getWriter().print("密码错误");
+				return;
+			}
+		}
+		else {
+			response.getWriter().print("密码错误");
+			return;
+		}
 	}
 
 }

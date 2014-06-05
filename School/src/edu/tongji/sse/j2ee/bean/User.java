@@ -7,6 +7,7 @@ public class User {
 	final private int uID;
 	private boolean stude;
 	private boolean admin;
+	private String password;
 	private String name;
 	private String phone;
 	private String email;
@@ -18,14 +19,15 @@ public class User {
 		name = "";
 	}
 	
-	public User(String ID, String password) 
+	public User(String ID, String password) // Test Version
 			throws UserIdNotFound,WrongPassword {
 		if (ID == null)
 			throw new UserIdNotFound();
 		uID=Integer.parseInt(ID);
 		if (password == null)
 			throw new WrongPassword();
-		name="test";
+		this.password=password;
+		name="TestUser";
 		stude = false;
 		admin = false;
 	}
@@ -62,6 +64,20 @@ public class User {
 		this.admin = admin;
 	}
 
+	public boolean isPassword(String pass) {
+		return password.equals(pass);
+	}
+	
+	public boolean setPassword(String nPass,String oPass) {
+		if (isPassword(oPass)) {
+			password = nPass;
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+	
 	public String getName() {
 		return name;
 	}
