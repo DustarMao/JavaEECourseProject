@@ -1,13 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"
-	import="edu.tongji.sse.j2ee.bean.*"
-%>
-<%
-	User user = (User)session.getAttribute("user");
-	if (user==null) {
-		response.sendRedirect("login.html");
-		return;
-	}
-%>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -17,10 +8,19 @@
 <body>
 	<div id="using">
     	<div id="infor">
-    		<span id="uID"><%=user.getuID() %></span>
-    		<span id="uName"><%=user.getName() %></span>
-    		<span id="uType"><%=user.isAdmin()?"管理员":(user.isStude()?"学生":"教师") %></span>
+    		<span id="uID"></span>
+    		<span id="uName"></span>
+    		<span id="uType"></span>
     	</div>
+    	<script>
+    		$.getJSON("UserInforJson", null,
+    	    	function callback(json) {
+    	    		$("#uID").text(json.user.id);
+    	    		$("#uName").text(json.user.name);
+    	    		$("#uType").text(json.user.type);
+	    		}
+    	    );
+    	</script>
     	<div id="btnLogout" class="clickable btn">
     		<img src="img/sign_logout.png" width="20" height="20" title="注销" />
     	</div>
@@ -45,7 +45,7 @@
 	$(".clickable").mouseup(function(e) {
 		$(this).css("background-color","#0066CC");
 	});
-	$("#side").load("side.jsp");
+	$("#side").load("side.html");
 	$("#side").fadeIn();
 	</script>
 </body>

@@ -3,22 +3,23 @@ package edu.tongji.sse.j2ee.school;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Time;
+
+import javax.sql.RowSet;
 
 public class Exam {
 	public final Course course;
 	Exam(Course course) throws Exception {
-		ResultSet rs = DB.select("*", "exam", "course_id = "+course.courseId);
+		RowSet rs = DB.select("*", "exam", "course_id = "+course.courseId);
 		if (rs.next())
 			this.course = course;
 		else
 			throw new Exception("ExamNotFound");
 	}
 	
-	public ResultSet getTuple() throws Exception{
-		ResultSet rs = DB.select("*", "exam", "course_id = "+course.courseId);
+	public RowSet getTuple() throws Exception{
+		RowSet rs = DB.select("*", "exam", "course_id = "+course.courseId);
 		if (rs.next())
 			return rs;
 		else

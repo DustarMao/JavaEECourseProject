@@ -3,10 +3,11 @@ package edu.tongji.sse.j2ee.school;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.List;
+
+import javax.sql.RowSet;
 
 import edu.tongji.sse.j2ee.errors.UserIdNotFound;
 
@@ -16,8 +17,8 @@ public class Student extends User {
 		super(id);
 	}
 	
-	protected ResultSet getStuTuple() throws UserIdNotFound, InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {
-		ResultSet rs = DB.select("*", "student", "id ="+this.id);
+	protected RowSet getStuTuple() throws UserIdNotFound, InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {
+		RowSet rs = DB.select("*", "student", "id ="+this.id);
 		if (rs.next())
 			return rs;
 		else
@@ -65,7 +66,7 @@ public class Student extends User {
 	
 	public List<Course> getCourses() throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException, Exception {
 		List<Course> courses = new LinkedList<Course>();
-		ResultSet rs = DB.select("course_id", "studyCourse", "student_id = "+this.id);
+		RowSet rs = DB.select("course_id", "studyCourse", "student_id = "+this.id);
 		while (rs.next()) {
 			courses.add(new Course(rs.getInt("course_id")));
 		}
@@ -73,7 +74,7 @@ public class Student extends User {
 	}
 	
 	public void selectCourse(Course course) throws Exception {
-		 ResultSet rs = DB.select("*", "selectCourse", "course_id = "+course.courseId+" && student_id = "+this.id);
+		 RowSet rs = DB.select("*", "selectCourse", "course_id = "+course.courseId+" && student_id = "+this.id);
 		 if (rs.next())
 			 throw new Exception("ThisCourseHasBeenSelected");
 		 Connection conn = DB.getConnection();
@@ -85,14 +86,14 @@ public class Student extends User {
 	}
 	
 	public void cancelSelect(Course course) throws Exception {
-		ResultSet rs = DB.select("*", "selectCourse", "course_id = "+course.courseId+" && student_id = "+this.id);
+		RowSet rs = DB.select("*", "selectCourse", "course_id = "+course.courseId+" && student_id = "+this.id);
 		if (rs.next())
 			throw new Exception("ThisCourseHasBeenSelected");
 		DB.delete("selectCourse", "course_id = "+course.courseId+" && student_id = "+this.id);
 	}
 
 	public int getScore(Course course) throws Exception {
-		ResultSet rs = DB.select("score", "studyCourse", "course_id = "+course.courseId+" && student_id = "+this.id);
+		RowSet rs = DB.select("score", "studyCourse", "course_id = "+course.courseId+" && student_id = "+this.id);
 		if (rs.next())
 			return rs.getInt("score");
 		else

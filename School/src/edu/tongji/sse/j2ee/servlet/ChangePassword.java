@@ -8,7 +8,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import edu.tongji.sse.j2ee.bean.User;
+import edu.tongji.sse.j2ee.errors.UserIdNotFound;
+import edu.tongji.sse.j2ee.errors.WrongPassword;
+import edu.tongji.sse.j2ee.school.User;
 
 /**
  * Servlet implementation class ChangePassword
@@ -35,6 +37,7 @@ public class ChangePassword extends HttpServlet {
 			response.getWriter().print("用户不存在");
 			return;
 		}
+		try {
 		if (user.isPassword(request.getParameter("oPass"))) {
 			if (request.getParameter("nPass")=="") {
 				response.getWriter().print("输入新密码");
@@ -52,6 +55,13 @@ public class ChangePassword extends HttpServlet {
 		else {
 			response.getWriter().print("密码错误");
 			return;
+		}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} catch (UserIdNotFound e) {
+			response.getWriter().print("用户不存在");
+		} catch (WrongPassword e) {
+			response.getWriter().print("密码错误");
 		}
 	}
 

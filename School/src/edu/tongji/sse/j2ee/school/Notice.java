@@ -2,14 +2,15 @@ package edu.tongji.sse.j2ee.school;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.util.LinkedList;
 import java.util.List;
+
+import javax.sql.RowSet;
 
 public class Notice {
 	public final int id;
 	Notice(int id) throws Exception {
-		ResultSet rs = DB.select("*", "notice", "notice_id = "+id);
+		RowSet rs = DB.select("*", "notice", "notice_id = "+id);
 		if (rs.next())
 			this.id = id;
 		else
@@ -17,14 +18,14 @@ public class Notice {
 	}
 	
 	public String getTitle() throws Exception {
-		ResultSet rs = DB.select("title", "notice", "notice_id = "+this.id);
+		RowSet rs = DB.select("title", "notice", "notice_id = "+this.id);
 		if (rs.next())
 			return rs.getString("title");
 		else 
 			throw new Exception("NoticeTitleNotFound");
 	}
 	public String getHref() throws Exception {
-		ResultSet rs = DB.select("href", "notice", "notice_id = "+this.id);
+		RowSet rs = DB.select("href", "notice", "notice_id = "+this.id);
 		if (rs.next())
 			return rs.getString("href");
 		else 
@@ -39,7 +40,7 @@ public class Notice {
 	
 	// static
 	public int getNewId() throws Exception {
-		ResultSet rs = DB.select("notice_id", "notice");
+		RowSet rs = DB.select("notice_id", "notice");
 		int newId = 1;
 		while (rs.next()) {
 			if (rs.getInt("id") >= newId) {
@@ -68,7 +69,7 @@ public class Notice {
 	
 	public List<Notice> getNotices() throws Exception {
 		List<Notice> notices = new LinkedList<Notice>();
-		ResultSet rs = DB.select("notice_id", "notice");
+		RowSet rs = DB.select("notice_id", "notice");
 		while (rs.next()) {
 			notices.add(new Notice(rs.getInt("notice_id")));
 		}

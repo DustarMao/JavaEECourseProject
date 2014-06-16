@@ -1,11 +1,12 @@
 package edu.tongji.sse.j2ee.school;
 
 import java.sql.Date;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Time;
 import java.util.LinkedList;
 import java.util.List;
+
+import javax.sql.RowSet;
 
 import edu.tongji.sse.j2ee.errors.UserIdNotFound;
 
@@ -15,8 +16,8 @@ public class Teacher extends User {
 		super(id);
 	}
 
-	protected ResultSet getTeaTuple() throws UserIdNotFound, InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {
-		ResultSet rs = DB.select("*", "teacher", "id ="+this.id);
+	protected RowSet getTeaTuple() throws UserIdNotFound, InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {
+		RowSet rs = DB.select("*", "teacher", "id ="+this.id);
 		if (rs.next())
 			return rs;
 		else
@@ -53,7 +54,7 @@ public class Teacher extends User {
 	
 	public List<Course> getCourses() throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException, Exception {
 		List<Course> courses = new LinkedList<Course>();
-		ResultSet rs = DB.select("course_id", "course", "teacher = "+this.id);
+		RowSet rs = DB.select("course_id", "course", "teacher = "+this.id);
 		while (rs.next()) {
 			courses.add(new Course(rs.getInt("course_id")));
 		}

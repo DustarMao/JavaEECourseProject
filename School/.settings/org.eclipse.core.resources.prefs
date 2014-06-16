@@ -1,4 +1,8 @@
 eclipse.preferences.version=1
 encoding//WebContent/index.html=UTF-8
+encoding//WebContent/login.html=UTF-8
+encoding//WebContent/pages/course/applyCourse.html=UTF-8
 encoding//WebContent/pages/notice.jsp=UTF-8
+encoding//WebContent/pages/person.html=UTF-8
+encoding//WebContent/side.html=UTF-8
 encoding//src/edu/tongji/sse/j2ee/servlet/ChangePassword.java=UTF-8

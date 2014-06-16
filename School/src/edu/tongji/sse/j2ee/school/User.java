@@ -3,16 +3,17 @@ package edu.tongji.sse.j2ee.school;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
+
+import javax.sql.RowSet;
 
 import edu.tongji.sse.j2ee.errors.UserIdNotFound;
 import edu.tongji.sse.j2ee.errors.WrongPassword;
 
 public class User {
-	final int id;
+	public final int id;
 	User(int id) throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException, Exception {
-		ResultSet rs = DB.select("*", "user", "id ="+id);
+		RowSet rs = DB.select("*", "user", "id ="+id);
 		if (rs.next())
 			this.id = id;
 		else
@@ -21,7 +22,7 @@ public class User {
 	
 	// static
 	public static int getNewId() throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {
-		ResultSet rs = DB.select("id", "user");
+		RowSet rs = DB.select("id", "user");
 		int newId = 1;
 		while (rs.next()) {
 			if (rs.getInt("id") >= newId) {
@@ -32,7 +33,7 @@ public class User {
 	}
 	
 	public static User getUser(int id, String pass) throws UserIdNotFound, WrongPassword, Exception {
-		ResultSet rs = DB.select("password", "user", "id = "+id);
+		RowSet rs = DB.select("password", "user", "id = "+id);
 		if (rs.next()) {
 			if (pass.equals(rs.getString("password"))) {
 				return new User(id);
@@ -65,8 +66,8 @@ public class User {
 	}
 	
 	// this user
-	protected ResultSet getTuple() throws UserIdNotFound, InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {
-			ResultSet rs = DB.select("*", "user", "id ="+this.id);
+	protected RowSet getTuple() throws UserIdNotFound, InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {
+			RowSet rs = DB.select("*", "user", "id ="+this.id);
 			if (rs.next())
 				return rs;
 			else
@@ -90,6 +91,10 @@ public class User {
 		return getTuple().getBoolean("admin");
 	}
 	
+	public boolean isPassword(String pass) throws Exception, UserIdNotFound {
+		return pass.equals(getTuple().getString("password"));
+	}
+	
 	public String getName() throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException, UserIdNotFound {
 		return getTuple().getString("name");
 	}
@@ -101,6 +106,7 @@ public class User {
 	public String getResidentId() throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException, UserIdNotFound {
 		return getTuple().getString("resident_id");
 	}
+	
 	
 	public Date getBirthday() throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException, UserIdNotFound {
 		return getTuple().getDate("birthday");
@@ -140,6 +146,15 @@ public class User {
 	
 	public void setAdmin(boolean isAdmin) throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {
 		setCol("admin", isAdmin);
+	}
+	
+	public boolean setPassword(String nPass, String oPass) throws Exception, WrongPassword, UserIdNotFound {
+		if (isPassword(oPass)) {
+			setCol("password", nPass);
+			return true;
+		}
+		else
+			return false;
 	}
 	
 	public void setName(String name) throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {

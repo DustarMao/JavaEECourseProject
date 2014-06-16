@@ -1,12 +1,12 @@
 package edu.tongji.sse.j2ee.school;
 
-import java.sql.ResultSet;
+import javax.sql.RowSet;
 
 public final class School {
 	private School() {}
 	
 	public static float getCurrentSeason() throws Exception {
-		ResultSet rs = DB.select("*", "school");
+		RowSet rs = DB.select("*", "school");
 		if (rs.next()) {
 			return rs.getFloat("current_season");
 		}

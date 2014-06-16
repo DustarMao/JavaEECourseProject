@@ -9,6 +9,11 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Time;
 
+import javax.sql.RowSet;
+import javax.sql.rowset.CachedRowSet;
+
+import com.sun.rowset.CachedRowSetImpl;
+
 public final class DB {
 	private DB() {}
 	
@@ -17,20 +22,26 @@ public final class DB {
 		return DriverManager.getConnection("jdbc:mysql://localhost:3306/school", "root", "root");
 	}
 	
-	public static ResultSet select(String select, String from) throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {
+	public static RowSet select(String select, String from) throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {
 		Connection conn = getConnection();
 		Statement stmt = conn.createStatement();
 		ResultSet rs = stmt.executeQuery("select"+select+" from "+from);
+		CachedRowSet crs = new CachedRowSetImpl();
+		crs.populate(rs);
+		stmt.close();
 		conn.close();
-		return rs;
+		return crs;
 	}
 	
-	public static ResultSet select(String select, String from, String where) throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {
+	public static RowSet select(String select, String from, String where) throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {
 		Connection conn = getConnection();
 		Statement stmt = conn.createStatement();
-		ResultSet rs = stmt.executeQuery("select"+select+" from "+from+" where "+where);
+		ResultSet rs = stmt.executeQuery("select "+select+" from "+from+" where "+where);
+		CachedRowSet crs = new CachedRowSetImpl();
+		crs.populate(rs);
+		stmt.close();
 		conn.close();
-		return rs;
+		return crs;
 	}
 	
 	public static void update(String update, String set) throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {

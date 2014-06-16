@@ -2,23 +2,24 @@ package edu.tongji.sse.j2ee.school;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.Time;
 import java.util.LinkedList;
 import java.util.List;
 
+import javax.sql.RowSet;
+
 public class Course {
 	final int courseId;
 	Course(int id) throws Exception {
-		ResultSet rs = DB.select("*", "course", "course_id = "+id);
+		RowSet rs = DB.select("*", "course", "course_id = "+id);
 		if (rs.next())
 			courseId = id;
 		else
 			throw new Exception("CourseNotFound");
 	}
 	
-	protected ResultSet getTuple() throws Exception {
-		ResultSet rs = DB.select("*", "course", "course_id = "+courseId);
+	protected RowSet getTuple() throws Exception {
+		RowSet rs = DB.select("*", "course", "course_id = "+courseId);
 		if (rs.next()) {
 			return rs;
 		}
@@ -125,7 +126,7 @@ public class Course {
 	// Students
 	public List<Student> getStudents() throws Exception{
 		List<Student> stus = new LinkedList<Student>();
-		ResultSet rs = DB.select("student_id", "studyCourse", "course_id = "+courseId);
+		RowSet rs = DB.select("student_id", "studyCourse", "course_id = "+courseId);
 		while (rs.next()) {
 			stus.add(new Student(rs.getInt("student_id")));
 		}
@@ -151,7 +152,7 @@ public class Course {
 	}
 	
 	public int getStuScore(Student stu) throws Exception {
-		ResultSet rs = DB.select("score", "studyCourse", "student_id = "+stu.id+" && course_id = "+courseId);
+		RowSet rs = DB.select("score", "studyCourse", "student_id = "+stu.id+" && course_id = "+courseId);
 		if (rs.next()) {
 			return rs.getInt("score");
 		}
@@ -172,7 +173,7 @@ public class Course {
 
 	// static
 	public static int getNewId() throws Exception {
-		ResultSet rs = DB.select("course_id", "course");
+		RowSet rs = DB.select("course_id", "course");
 		int newId = 1;
 		while (rs.next()) {
 			if (rs.getInt("course_id") >= newId) {
@@ -214,9 +215,9 @@ public class Course {
 
 	public static List<Course> getSelectedAvailable(Student stu) throws Exception {
 		List<Course> courses = new LinkedList<Course>();
-		ResultSet courseRs = DB.select("course_id", "course");
+		RowSet courseRs = DB.select("course_id", "course");
 		while (courseRs.next()) {
-			ResultSet studyRs = DB.select("*", "studyCourse", 
+			RowSet studyRs = DB.select("*", "studyCourse", 
 					"course_id = "+courseRs.getInt("course_id")+" && student_id = "+stu.id);
 			if (!studyRs.next()) {
 				courses.add(new Course(courseRs.getInt("course_id")));
@@ -227,7 +228,7 @@ public class Course {
 
 	public static List<Course> getApplyingCourses() throws Exception {
 		List<Course> courses = new LinkedList<Course>();
-		ResultSet rs = DB.select("course_id", "course", "applying = "+true);
+		RowSet rs = DB.select("course_id", "course", "applying = "+true);
 		while (rs.next()) {
 			courses.add(new Course(rs.getInt("course_id")));
 		}
