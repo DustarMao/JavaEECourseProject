@@ -182,6 +182,7 @@ $("#Buttons #cancel").click(function(e) {
 		$("#pEmail input").val(json.user.Email);
 		$("#pQQ input").val(json.user.QQ);
 		$("#pAddress input").val(json.user.address);
+		$("#PersonInfor .available").attr("disabled","");
 	});
 });
 $("#Buttons #submit").click(function(e) {

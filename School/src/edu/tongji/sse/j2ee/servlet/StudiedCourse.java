@@ -13,20 +13,20 @@ import edu.tongji.sse.j2ee.errors.UserIdNotFound;
 import edu.tongji.sse.j2ee.json.*;
 import edu.tongji.sse.j2ee.school.Course;
 import edu.tongji.sse.j2ee.school.School;
-import edu.tongji.sse.j2ee.school.Teacher;
+import edu.tongji.sse.j2ee.school.Student;
 import edu.tongji.sse.j2ee.school.User;
 
 /**
  * Servlet implementation class TaughtCourse
  */
-@WebServlet("/TaughtCourse")
-public class TaughtCourse extends HttpServlet {
+@WebServlet("/StudiedCourse")
+public class StudiedCourse extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public TaughtCourse() {
+    public StudiedCourse() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -37,8 +37,8 @@ public class TaughtCourse extends HttpServlet {
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setCharacterEncoding("UTF-8");
 		try {
-			Teacher teacher = ((User)request.getSession().getAttribute("user")).toTeacher();
-			List<Course> courses = teacher.getCourses();
+			Student student = ((User)request.getSession().getAttribute("user")).toStudent();
+			List<Course> courses = student.getCourses();
 			JsonList terms = new JsonList();
 			courses:
 			for (Course c : courses) {

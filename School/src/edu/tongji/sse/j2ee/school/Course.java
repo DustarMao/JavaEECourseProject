@@ -10,12 +10,12 @@ import javax.sql.RowSet;
 
 public class Course {
 	public final int courseId;
-	Course(int id) throws Exception {
+	public Course(int id) throws Exception {
 		RowSet rs = DB.select("*", "course", "course_id = "+id);
 		if (rs.next())
 			courseId = id;
 		else
-			throw new Exception("CourseNotFound");
+			throw new Exception("Course "+id+" Not Found");
 	}
 	
 	protected RowSet getTuple() throws Exception {
@@ -80,6 +80,10 @@ public class Course {
 	
 	public boolean isApplying() throws Exception {
 		return getTuple().getBoolean("applying");
+	}
+	
+	public Exam getExam() throws Exception {
+		return new Exam(this);
 	}
 	
 	// Setter

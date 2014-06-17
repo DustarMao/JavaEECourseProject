@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>课程信息</title>
+<style>
+#view {
+	position: fixed;
+	top: 40px;
+	left: 480px;
+	right: 0;
+	bottom: 0;
+	overflow-y: auto;
+}
+#view div {
+	margin: 20px;
+}
+div#viewStudents table {
+	width: 100%;
+	border-collapse: collapse;
+	border-left: none;
+	border-right: none;
+}
+div#viewStudents th, div#viewStudents td {
+	border: thin solid #39F;
+	padding: 3px 7px;
+	text-align: right;
+}
+div#viewStudents th {
+	text-align: center;
+}
+div#viewStudents thead {
+	color: #FFF;
+	background-color: #69F;
+}
+button {
+	padding: 5px 10px;
+	background-color: #69F;
+	border: thin solid #39F;
+}
+</style>
+</head>
+<body id="view">
+<div id="courseInfor">
+    <h1 id="courseName"/>
+    <p id="courseTeacher"/>
+    <p id="courseGrade"/>
+    <p id="courseSize"/>
+    <p id="courseExam"/>
+</div>
+<div id="viewStudents" class="teacher">
+    <p>Students</p>
+    <table>
+    	<thead><tr>
+        	<th>ID</th>
+            <th>姓名</th>
+            <th>性别</th>
+            <th>电话</th>
+            <th>电邮</th>
+            <th>得分</th>
+        </tr></thead>
+        <tbody>
+        </tbody>
+    </table>
+</div>
+<script>
+$.getJSON("CourseInforJson", {
+		cID: $(".choosen").attr("id")
+	},
+    function callback(json) {
+		if (json.isTeacher) {
+			$(".student").remove();
+			$(json.CourseInfor.students).each(function(index, element) {
+				studentID = this.id;
+				vStu=$("#viewStudents tbody").append("<tr/>").children().last().attr("id",this.ID).addClass("student");
+				vStu.append("<td/>").children().last().addClass("ID").text(this.ID);
+				vStu.append("<td/>").children().last().addClass("name").text(this.name);
+				vStu.append("<td/>").children().last().addClass("sex").text(this.sex);
+				vStu.append("<td/>").children().last().addClass("phone").text(this.phone);
+				vStu.append("<td/>").children().last().addClass("email").text(this.email);
+				tdSco=vStu.append("<td/>").children().last().addClass("score");
+				txtScore=tdSco.append("<input/>").children().last().attr("type","text").attr("disabled","").val(this.score);
+				btnChange=tdSco.append("<button>修改</button>").children().last().attr("type","button").addClass("changeScore");
+				btnSubmit=tdSco.append("<button>提交</button>").children().last().attr("type","button").addClass("submitScore").css("display","none");
+				btnChange.click(function(e) {
+					this.css("display","none");
+					btnSubmit.css("display","inline-block");
+					txtScore.removeattr("disabled","");
+				});
+				btnChange.click(function(e) {
+					this.css("display","none");
+					btnChange.css("display","inline-block");
+					txtScore.attr("disabled","");
+					$.post("ChangeScore", {
+						sID: studentID,
+						cID: $(".choosen").attr("id")
+					}, function(data) {
+						$("#view").load("pages/course/courseInfor.html");
+					});
+				});
+			});
+		} else {
+			$(".teacher").remove();
+		}
+		$("#courseName").text(json.CourseInfor.name+"("+json.CourseInfor.cID+")");
+		$("#courseTeacher").text("授课教师: "+json.CourseInfor.teacher);
+		$("#courseSize").text("最大容量: "+json.CourseInfor.size+"人");
+		$("#courseGrade").text("计 "+json.CourseInfor.grade+"学分");
+		$("#courseExam").text("于"+json.CourseInfor.exam.date+" "+json.CourseInfor.exam.time+"在"+json.CourseInfor.exam.place+"考试");
+    });
+</script>
+</body>
+</html>
