@@ -173,6 +173,7 @@ CREATE TABLE IF NOT EXISTS `school`.`School` (
 ENGINE = InnoDB;
 
 insert into user(id,password,name,admin,teacher) values(0,'root','Root',true,true);
+insert into School(current_season) values(2014.1);
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;

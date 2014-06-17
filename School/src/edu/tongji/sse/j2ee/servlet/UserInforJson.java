@@ -48,11 +48,13 @@ public class UserInforJson extends HttpServlet {
 			userInfor.put("Email", new JsonVal<String>(user.getEmail()));
 			userInfor.put("website", new JsonVal<String>(user.getWebsite()));
 			userInfor.put("QQ", new JsonVal<String>(user.getQQ()));
+			userInfor.put("address", new JsonVal<String>(user.getAddress()));
 			if (user.isTeacher()) {
 				userInfor.put("startDate", new JsonVal<String>(user.toTeacher().getStartDate().toString()));
 				userInfor.put("teacherType", new JsonVal<String>(user.toTeacher().getTeacherType()));
 				userInfor.put("salary", new JsonVal<Integer>(user.toTeacher().getSalary()));
 			} else {
+				userInfor.put("major", new JsonVal<String>(user.toStudent().getMajor()));
 				userInfor.put("enterDate", new JsonVal<String>(user.toStudent().getEnterDate().toString()));
 				userInfor.put("studyYear", new JsonVal<Integer>(user.toStudent().getStudyYear()));
 				userInfor.put("studnetType", new JsonVal<String>(user.toStudent().getStudyType()));

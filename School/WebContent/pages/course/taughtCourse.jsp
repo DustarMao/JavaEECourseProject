@@ -69,11 +69,11 @@ div#viewStudents thead {
 <div id="viewStudents">
 </div>
 <script>
-$.getJSON("TestData/taughtCourse.json",null,	// The URL should be "TaughtCourse", the Data should be sth from session
+$.getJSON("TaughtCourse",null,
 	function callback(json) {
 		$(json.taughtCourse).each(function(index, element) {
 			tDiv=$("#courses").append("<div/>").children().last().attr("id",this.term).addClass("term").text(this.term);
-			for (i=0;i<this.courses.length;i++) {
+			for (var i=0;i<this.courses.length;i++) {
 				course=this.courses[i];
 				cDiv=tDiv.append("<div/>").children().last().attr("id",course.cID).addClass("course");
 				cDiv.append("<span/>").children().last().addClass("courseId").text(course.cID);

@@ -68,7 +68,7 @@ div#viewStudents thead {
 <div id="viewStudents">
 </div>
 <script>
-$.getJSON("TestData/Courses.json",null,	// The URL should be "TeachingCourse", the Data should be sth from session
+$.getJSON("TeachingCourse",null,
 	function callback(json) {
 		$(json.currentTerm.courses).each(function(index, element) {
 			course=this;

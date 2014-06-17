@@ -13,6 +13,11 @@ public class JsonList extends LinkedList<JsonObj> implements JsonObj {
 		super();
 	}
 	
+	public JsonList(JsonObj o) {
+		super();
+		this.add(o);
+	}
+	
 	public JsonList(JsonObj[] array) {
 		super();
 		for (JsonObj jo : array) {

@@ -9,7 +9,7 @@ import java.util.List;
 import javax.sql.RowSet;
 
 public class Course {
-	final int courseId;
+	public final int courseId;
 	Course(int id) throws Exception {
 		RowSet rs = DB.select("*", "course", "course_id = "+id);
 		if (rs.next())

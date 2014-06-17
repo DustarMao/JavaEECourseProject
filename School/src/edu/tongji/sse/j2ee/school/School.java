@@ -19,4 +19,9 @@ public final class School {
 			DB.update("school", "current_season = "+cSeason);
 		}
 	}
+	public static String toLine(float season) {
+		int small = (int)(season*10) - ((int)season)*10;
+		int num = (int)season;
+		return ""+num+" Term"+small;
+	}
 }

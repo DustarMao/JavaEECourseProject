@@ -1,8 +1,9 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>个人信息</title>
+<script type="text/javascript" src="../jquery-1.11.1.js"></script>
 <style type="text/css">
 * {
 	font-family: "Microsoft Yahei UI","Microsoft Yahei",Verdana,Simsun,"Segoe UI","Segoe UI Web Regular","Segoe UI Symbol","Helvetica Neue","BBAlpha Sans","S60 Sans",Arial,sans-serif;
@@ -18,28 +19,187 @@ div {
 	overflow-x: hidden;
 	overflow-y: hidden;
 }
+button {
+	padding: 5px 10px;
+	background-color: #69F;
+	border: thin solid #39F;
+}
 
-#PersonInfor . {
-	
+#PersonInfor .value {
+	background-color: #FFF;
+	border-style: none;
+	text-align: right;
+	float: right;
+	width: inherit;
+}
+#PersonInfor form {
+	margin: 20px;
+}
+#PersonInfor form div {
+	display: inline-block;
+	margin: 5px 10px;
+	border-bottom: solid thin;
+	width: 250px;
+}
+#PersonInfor form div label {
+	position: absolute;
+	z-index: 1;
+}
+#PersonInfor form hr {
+	border-style: none;
+	margin: 10px;
 }
 </style>
 </head>
 <body>
 <div id="PersonInfor">
-	<form>
+	<form action="ChangeUserInfor" method="post">
 		<div id="pName">
         	<label for="pName">姓名:</label>
-            <input type="text" class="value available" name="pName" disabled="true" />
+            <input type="text" class="value available" name="pName" disabled />
         </div>
         <div id="pID">
         	<label for="pID">ID:</label>
-            <input type="text" class="value available" name="pID" disabled="true" />
+            <input type="text" class="value" name="pID" disabled />
         </div>
         <div id="pType">
         	<label for="pType">类型:</label>
-            <input type="text" class="value" name="pType" disabled="true" />
+            <input type="text" class="value" name="pType" disabled />
+        </div>
+        <hr />
+        <div id="pDepart">
+        	<label for="pDepart">学院:</label>
+            <input type="text" class="value" name="pDepart" disabled />
+        </div>
+        <div id="sMajor" class="student">
+        	<label for="sMajor">专业:</label>
+            <input type="text" class="value" name="sMajor" disabled />
+        </div>
+        <div id="sEnterDate" class="student">
+        	<label for="sEnterDate">入学日期:</label>
+            <input type="date" class="value" name="sEnterDate" disabled />
+        </div>
+        <div id="sStudyYear" class="student">
+        	<label for="sStudyYear">学制:</label>
+            <input type="text" class="value" name="sStudyYear" disabled />
+        </div>
+        <div id="sStudyType" class="student">
+        	<label for="sStudyType">就读学位:</label>
+            <input type="text" class="value" name="sStudyType" disabled />
+        </div>
+        <div id="tTeacherType" class="teacher">
+        	<label for="tTeacherType">职称:</label>
+            <input type="text" class="value" name="tTeacherType" disabled />
+        </div>
+        <div id="tStartDate" class="teacher">
+        	<label for="tStartDate">入校时间:</label>
+            <input type="date" class="value" name="tStartDate" disabled />
+        </div>
+        <hr />
+        <div id="pRID">
+        	<label for="pRID">身份证:</label>
+            <input type="text" class="value available" name="pRID" disabled />
+        </div>
+        <div id="pSex">
+        	<label for="pSex">性别:</label>
+            <input type="text" class="value available" name="pSex" disabled />
+        </div>
+        <div id="pBirthday">
+        	<label for="pBirthday">生日:</label>
+            <input name="pBirthday" type="date" class="value available" disabled />
+        </div>
+        <div id="pBirthplace">
+        	<label for="pBirthplace">籍贯:</label>
+            <input type="text" class="value available" name="pBirthplace" disabled />
+        </div>
+        <hr />
+        <div id="pPhone">
+        	<label for="pPhone">电话:</label>
+            <input type="tel" class="value available" name="pPhone" disabled />
+        </div>
+        <div id="pEmail">
+        	<label for="pEmail">Email:</label>
+            <input type="text" class="value available" name="pEmail" disabled />
+        </div>
+        <div id="pQQ">
+        	<label for="pQQ">QQ:</label>
+            <input type="text" class="value available" name="pQQ" disabled />
+        </div>
+        <div id="pWebsite" style="width:525px;">
+        	<label for="pWebsite">个人主页:</label>
+            <input type="text" class="value available" name="pWebsite" disabled />
+        </div>
+        <div id="pAddress" style="width:525px;">
+        	<label for="pAddress">住址:</label>
+            <input type="text" class="value available" name="pAddress" disabled />
+        </div>
+        <hr />
+        <div id="Buttons" style="border-style:none;">
+        	<button id="change" type="button">修改</button>
+            <button id="submit" type="button">提交</button>
+            <button id="cancel" type="button">取消</button>
         </div>
 	</form>
 </div>
+<script>
+$("#Buttons #change").click(function(e) {
+    $("#Buttons #change").css("display","none");
+	$("#Buttons #cancel").css("display","inline-block");
+	$("#Buttons #submit").css("display","inline-block");
+	$("#PersonInfor .available").removeAttr("disabled");
+});
+$("#Buttons #cancel").click(function(e) {
+    $("#Buttons #change").css("display","inline-block");
+	$("#Buttons #cancel").css("display","none");
+	$("#Buttons #submit").css("display","none");
+    $.getJSON("UserInfor", null, function(json) {
+		$("#pName input").val(json.user.name);
+		$("#pID input").val(json.user.id);
+		$("#pType input").val(json.user.type);
+		$("#pDepart input").val(json.user.department);
+		if (json.user.isAdmin) {
+			$(".student").remove();
+			$(".teacher").remove();
+		} else {
+			if (json.user.isTeacher) {
+				
+				$(".student").remove();
+				$("#tTeacherType input").val(json.user.teacherTyper);
+				$("#tStartDate input").val(json.user.startDate);
+			} else {
+				$(".teacher").remove();
+				$("#sMajor input").val(json.user.major);
+				$("#sStudyType input").val(json.user.studentType);
+				$("#sStudyYear input").val(json.user.studyYear+"年");
+				$("#sEnterDate input").val(json.user.enterDate);
+			}
+		}
+		$("#pRID input").val(json.user.rID);
+		$("#pSex input").val(json.user.sex?"男":"女");
+		$("#pBirthday input").val(json.user.birthday);
+		$("#pBirthplace input").val(json.user.birthplace);
+		$("#pPhone input").val(json.user.phone);
+		$("#pEmail input").val(json.user.Email);
+		$("#pQQ input").val(json.user.QQ);
+		$("#pAddress input").val(json.user.address);
+	});
+});
+$("#Buttons #submit").click(function(e) {
+    $.post("ChangeUserInfor", {
+		pName: $("#pName input").val(),
+		pRID: $("#pRID input").val(),
+		pSex: $("#pSex input").val(),
+		pBirthday: $("#pBirthday input").val(),
+		pBirthplace: $("#pBirthplace input").val(),
+		pPhone: $("#pPhone input").val(),
+		pEmail: $("#pEmail input").val(),
+		pQQ: $("#pQQ input").val(),
+		pWebsite: $("#pWebsite input").val(),
+		pAddress: $("#pAddress input").val(),
+	}, function(data) {
+		$("#main").load("pages/person.html");
+	});
+});
+</script>
 </body>
 </html>

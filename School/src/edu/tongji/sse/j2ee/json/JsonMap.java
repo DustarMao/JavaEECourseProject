@@ -12,6 +12,11 @@ public class JsonMap extends LinkedList<Entry<String, JsonObj>> implements JsonO
 	public JsonMap() {
 		super();
 	}
+	
+	public JsonMap(String key, JsonObj val) {
+		super();
+		this.put(key, val);
+	}
 
 	public void put(String key, JsonObj val) {
 		if (get(key) == null) {
