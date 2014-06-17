@@ -1,10 +1,93 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>开课</title>
+<style type="text/css">
+* {
+	font-family: "Microsoft Yahei UI","Microsoft Yahei",Verdana,Simsun,"Segoe UI","Segoe UI Web Regular","Segoe UI Symbol","Helvetica Neue","BBAlpha Sans","S60 Sans",Arial,sans-serif;
+	list-style-type: none;
+}
+
+body {
+	margin: 0;
+}
+
+div {
+	margin: 0;
+	overflow-x: hidden;
+	overflow-y: hidden;
+}
+button {
+	padding: 5px 10px;
+	background-color: #69F;
+	border: thin solid #39F;
+}
+
+#ApplyCourse .value {
+	background-color: #FFF;
+	border-style: none;
+	text-align: right;
+	float: right;
+	width: inherit;
+}
+#ApplyCourse form {
+	margin: 20px;
+}
+#ApplyCourse form div {
+	display: inline-block;
+	margin: 5px 10px;
+	border-bottom: solid thin;
+	width: 250px;
+}
+#ApplyCourse form div label {
+	position: absolute;
+	z-index: 1;
+}
+#ApplyCourse form hr {
+	border-style: none;
+	margin: 10px;
+}
+</style>
 </head>
 <body>
-
+<div id="ApplyCourse">
+	<form action="ApplyCourse" method="post">
+		<div id="cName">
+			<label for="cName">课名:</label>
+			<input type="text" name="cName" class="value"/>
+		</div>
+		<div id="cSize">
+			<label for="cSize">容量:</label>
+			<input type="text" name="cSize" class="value"/>
+		</div>
+		<div id="cGrade">
+			<label for="cGrade">学分:</label>
+			<input type="text" name="cGrade" class="value"/>
+		</div>
+		<br />
+		<div id="cTime">
+			<label for="cTime">时间:</label>
+			<input type="time" name="cTime" class="value" style="width: auto;"/>
+			<select name="cWeekday" class="value" style="width: auto;">
+				<option value="0">Sun 日</option>
+				<option value="1">Mon 一</option>
+				<option value="2">Tue 二</option>
+				<option value="3">Wed 三</option>
+				<option value="4">Thu 四</option>
+				<option value="5">Fri 五</option>
+				<option value="6">Sat 六</option>
+			</select>
+		</div>
+		<div id="cPlace">
+			<label for="cPlace">地点:</label>
+			<input type="text" name="cPlace" class="value"/>
+		</div>
+		<div id="Buttons" style="display: block; border-bottom: none;">
+			<button type="submit">提交</button>
+			<button type="reset">重置</button>
+		</div>
+	</form>
+</div>
 </body>
 </html>

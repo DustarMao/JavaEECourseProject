@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>选课</title>
+<style type="text/css">
+table {
+	width: 100%;
+	border-collapse: collapse;
+	border-left: none;
+	border-right: none;
+}
+th, td {
+	border: thin solid #39F;
+	padding: 3px 7px;
+	text-align: right;
+}
+th {
+	text-align: center;
+}
+thead {
+	color: #FFF;
+	background-color: #69F;
+}
+</style>
+</head>
+<body>
+<div id="SelectCourse">
+	<table>
+		<thead><tr>
+			<th><input type="checkbox" disabled /></th>
+			<th>课号</th>
+			<th>课名</th>
+			<th>学分</th>
+			<th>地点</th>
+			<th>时间</th>
+			<th>容量</th>
+		</tr></thead>
+		<tbody id="courses">
+		</tbody>
+	</table>
+</div>
+<script type="text/javascript">
+$.getJSON("GetSelectCourse", null, function(json) {
+	var stuID = json.uID;
+	$(json.courses).each(function(index,element) {
+		var couID = this.cID;
+		cTr=$("#courses").append("<tr/>").children().last().attr("id","cID"+this.cID);
+		cTr.append("<td/>").children().last().addClass("cID").text(this.cID);
+		cTr.append("<td/>").children().last().addClass("cName").text(this.name);
+		cTr.append("<td/>").children().last().addClass("cGrade").text(this.grade);
+		cTr.append("<td/>").children().last().addClass("cPlace").text(this.place);
+		cTr.append("<td/>").children().last().addClass("cTime").text(this.time);
+		cTr.append("<td/>").children().last().addClass("cSize").text(this.size);
+		cbSelect = cTr.prepend("<td/>").children().first().addClass("cSelect").click(function(e) {
+			$.post("SelectCourse", {
+				cID: couID,
+				sID: stuID,
+				selected: $(this).attr("checked")?true:false
+			});
+		});
+		if (this.select)
+			cbSelect.attr("checked","true");
+		else
+			cbSelect.removeAttr("checked");
+	});
+});
+</script>
+</body>
+</html>

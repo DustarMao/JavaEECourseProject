@@ -86,6 +86,14 @@ public class Course {
 		return new Exam(this);
 	}
 	
+	public boolean isSelected(Student stu) throws Exception {
+		RowSet rs = DB.select("*", "studyCourse", "course_id = "+courseId+" && student_id = "+stu.id);
+		if (rs.next())
+			return true;
+		else
+			return false;
+	}
+	
 	// Setter
 	public void setName(String name) throws Exception {
 		DB.setPara("course", "name", name, "course_id = "+courseId);
@@ -217,15 +225,13 @@ public class Course {
 		DB.delete("course", "course_id = "+course.courseId);
 	}
 
-	public static List<Course> getSelectedAvailable(Student stu) throws Exception {
+	public static List<Course> getSelectableCourses() throws Exception {
 		List<Course> courses = new LinkedList<Course>();
 		RowSet courseRs = DB.select("course_id", "course");
 		while (courseRs.next()) {
-			RowSet studyRs = DB.select("*", "studyCourse", 
-					"course_id = "+courseRs.getInt("course_id")+" && student_id = "+stu.id);
-			if (!studyRs.next()) {
-				courses.add(new Course(courseRs.getInt("course_id")));
-			}
+			Course c = new Course(courseRs.getInt("course_id"));
+			if (c.getSeason() == School.getCurrentSeason() && !c.isApplying())
+				courses.add(c);
 		}
 		return courses;
 	}

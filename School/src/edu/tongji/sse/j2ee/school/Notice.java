@@ -39,7 +39,7 @@ public class Notice {
 	}
 	
 	// static
-	public int getNewId() throws Exception {
+	public static int getNewId() throws Exception {
 		RowSet rs = DB.select("notice_id", "notice");
 		int newId = 1;
 		while (rs.next()) {
@@ -50,7 +50,7 @@ public class Notice {
 		return newId;
 	}
 	
-	public Notice addNotice(int id, String title, String href) throws Exception {
+	public static Notice addNotice(int id, String title, String href) throws Exception {
 		Connection conn = DB.getConnection();
 		if (DB.select("*", "notice", "notice_id = "+id).next())
 			throw new Exception("IdExisted");
@@ -63,11 +63,11 @@ public class Notice {
 		return new Notice(id);
 	}
 	
-	public Notice getNotice(int id) throws Exception {
+	public static Notice getNotice(int id) throws Exception {
 		return new Notice(id);
 	}
 	
-	public List<Notice> getNotices() throws Exception {
+	public static List<Notice> getNotices() throws Exception {
 		List<Notice> notices = new LinkedList<Notice>();
 		RowSet rs = DB.select("notice_id", "notice");
 		while (rs.next()) {
@@ -76,7 +76,7 @@ public class Notice {
 		return notices;
 	}
 	
-	public void removeNotice(Notice notice) throws Exception {
+	public static void removeNotice(Notice notice) throws Exception {
 		DB.delete("notice", "notice_id = "+notice.id);
 	}
 	

@@ -12,7 +12,7 @@ import edu.tongji.sse.j2ee.errors.WrongPassword;
 
 public class User {
 	public final int id;
-	User(int id) throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException, Exception {
+	public User(int id) throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException, Exception {
 		RowSet rs = DB.select("*", "user", "id ="+id);
 		if (rs.next())
 			this.id = id;

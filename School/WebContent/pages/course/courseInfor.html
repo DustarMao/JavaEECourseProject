@@ -42,7 +42,7 @@ button {
 </head>
 <body id="view">
 <div id="courseInfor">
-    <h1 id="courseName"/>
+    <h1 id="courseName"></h1>
     <p id="courseTeacher"/>
     <p id="courseGrade"/>
     <p id="courseSize"/>
@@ -93,7 +93,8 @@ $.getJSON("CourseInforJson", {
 					txtScore.attr("disabled","");
 					$.post("ChangeScore", {
 						sID: studentID,
-						cID: $(".choosen").attr("id")
+						cID: $(".choosen").attr("id"),
+						nScore: txtScore.val()
 					}, function(data) {
 						$("#view").load("pages/course/courseInfor.html");
 					});

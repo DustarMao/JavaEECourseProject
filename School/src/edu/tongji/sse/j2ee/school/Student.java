@@ -85,6 +85,10 @@ public class Student extends User {
 		 conn.close();
 	}
 	
+	public void unSelectCourse(Course course) throws Exception {
+		DB.delete("selectCourse", "course_id = "+course.courseId);
+	}
+	
 	public void cancelSelect(Course course) throws Exception {
 		RowSet rs = DB.select("*", "selectCourse", "course_id = "+course.courseId+" && student_id = "+this.id);
 		if (rs.next())
