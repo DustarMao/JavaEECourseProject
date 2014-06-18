@@ -18,6 +18,9 @@ th, td {
 th {
 	text-align: center;
 }
+td.cSelect {
+	text-align: center;
+}
 thead {
 	color: #FFF;
 	background-color: #69F;
@@ -52,8 +55,8 @@ $.getJSON("GetSelectCourse", null, function(json) {
 		cTr.append("<td/>").children().last().addClass("cPlace").text(this.place);
 		cTr.append("<td/>").children().last().addClass("cTime").text(this.time);
 		cTr.append("<td/>").children().last().addClass("cSize").text(this.size);
-		cbSelect = cTr.prepend("<td/>").children().first().addClass("cSelect").
-			prepend("<input/>").children.first.attr("type","checkbox").click(function(e) {
+		cbSelect = cTr.prepend("<td/>").children().first().addClass("cSelect");
+		cbSelect = cbSelect.prepend("<input/>").children().first().attr("type","checkbox").click(function(e) {
 			$.post("SelectCourse", {
 				cID: couID,
 				sID: stuID,

@@ -65,7 +65,7 @@ button {
 </div>
 <script>
 $.getJSON("CourseInforJson", {
-		cID: $(".choosen").attr("id")
+		cID: $(".choosen .courseId").text()
 	},
     function callback(json) {
 		if (json.isTeacher) {

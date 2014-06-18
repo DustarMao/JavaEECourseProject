@@ -35,8 +35,9 @@ public class CourseInforJson extends HttpServlet {
 	 */
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setCharacterEncoding("UTF-8");
+		String cID = request.getParameter("cID");
 		try {
-			Course course = new Course(Integer.parseInt(request.getParameter("cID")));
+			Course course = new Course(Integer.parseInt(cID));
 			JsonMap json = new JsonMap();
 			JsonMap courseInfor = new JsonMap();
 			courseInfor.put("cID",new JsonVal<Integer>(course.courseId));
@@ -64,6 +65,7 @@ public class CourseInforJson extends HttpServlet {
 			courseInfor.put("exam", exam);
 			json.put("CourseInfor", courseInfor);
 			json.put("isTeacher", new JsonVal<Boolean>(((User)request.getSession().getAttribute("user")).isTeacher()));
+			response.getWriter().print(json.toJsonStr());
 		} catch (Exception | UserIdNotFound e) {
 			e.printStackTrace();
 		}
