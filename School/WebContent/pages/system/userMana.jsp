@@ -54,7 +54,7 @@ button {
 </head>
 <body>
 <div id="queryUser">
-	<form>
+	<form action="AdChUserInfor" method="post">
 		<div id="pID">
         	<label for="pID">ID:</label>
             <input type="number" class="value" name="pID" disabled />
@@ -87,14 +87,40 @@ button {
         	<label for="tTeacherType">职称:</label>
             <input type="text" class="value" name="tTeacherType" disabled />
         </div>
-        <div id="Buttons">
+        <div id="Buttons" style="display: block; border-bottom: none;">
         	<button type="submit">提交</button>
-        	<button type="button">查询新用户</button>
+        	<button type="button" id="btnQueryU">查询用户</button>
         </div>
 	</form>
 </div>
 <script type="text/javascript">
-
+$("#pType select").change(function(e) {
+	if ($(this).val() == "Admin") {
+		$("#main .student").css("display","none");
+		$("#main .teacher").css("display","none");
+	} else if ($(this).val() == "Tea"){
+		$("#main .student").css("display","none");
+		$("#main .teacher").css("display","inline-block");
+	} else {
+		$("#main .student").css("display","inline-block");
+		$("#main .teacher").css("display","none");
+	}
+});
+$("#btnQueryU").click(function(e) {
+	var userId = prompt("用户ID:","待查询的用户的ID");
+	if (userId != null) {
+		$.getJSON("OthUserInforJson", {uID: userId}, function(json) {
+			$("#pName input").val(json.user.name);
+			$("#pID input").val(json.user.id);
+			$("#pType select").val(json.user.isAdmin?"Admin":(json.user.isTeacher?"Tea":"Stu")).change();
+			$("#pDepart input").val(json.user.department);
+			$("#sMajor input").val(json.user.major);
+			$("#sStudyType input").val(json.user.studentType);
+			$("#sStudyYear input").val(json.user.studyYear+"年");
+			$("#tTeacherType input").val(json.user.teacherTyper);
+		});
+	}
+});
 </script>
 </body>
 </html>

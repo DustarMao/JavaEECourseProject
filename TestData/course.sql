@@ -1,5 +1,5 @@
 use school;
-insert into course,0)
+insert into course
        values(1001,'高等数学',11001,2014.2,'C楼210',1,'8:00:00',50,5,0);
 insert into course
        values(1002,'大学英语',11101,2014.2,'C楼211',1,'8:00:00',50,4,0);

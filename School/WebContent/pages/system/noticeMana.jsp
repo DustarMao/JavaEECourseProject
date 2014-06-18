@@ -54,7 +54,7 @@ button {
 </head>
 <body id="main">
 <div id="addNotice">
-	<p>新通知</p>
+	<p style="margin: 20px;">新通知</p>
 	<form action="AddNotice" method="post">
 		<div id="nTitle">
 			<label for="nTitle">标题</label>
@@ -64,7 +64,7 @@ button {
 			<label for="nHref">链接</label>
 			<input type="url" name="nHref" class="value" value="http://" />
 		</div>
-		<div id="Buttons">
+		<div id="Buttons" style="display: block; border-bottom: none;">
 			<button type="submit">提交</button>
 		</div>
 	</form>
