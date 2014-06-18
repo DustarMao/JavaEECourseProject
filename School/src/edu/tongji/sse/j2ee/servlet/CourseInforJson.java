@@ -56,7 +56,7 @@ public class CourseInforJson extends HttpServlet {
 				students.add(student);
 			}
 			courseInfor.put("students",students);
-			courseInfor.put("isCurrent", new JsonVal<Boolean>(course.getSeason()==School.getCurrentSeason()));
+			courseInfor.put("isCurrent", new JsonVal<Boolean>(course.getSeason()==School.currentSeason));
 			JsonMap exam = new JsonMap();
 			exam.put("place", new JsonVal<String>(course.getExam().getPlace()));
 			exam.put("date", new JsonVal<String>(course.getExam().getDate().toString()));

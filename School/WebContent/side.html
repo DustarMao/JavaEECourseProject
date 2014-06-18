@@ -28,13 +28,13 @@
         <li id="system">
         	<a>系统管理</a>
             <ul class="normal" style="display: none;">
-            	<li id="passwordMana"><a>密码管理</a></li>
+            	<li id="passwordManaN"><a>密码管理</a></li>
             </ul>
             <ul class="admin" style="display: none;">
             	<li id="userMana"><a>用户管理</a></li>
             	<li id="courseMana"><a>课程管理</a></li>
                 <li id="noticeMana"><a>通知管理</a></li>
-                <li id="passwordMana"><a>密码管理</a></li>
+                <li id="passwordManaA"><a>密码管理</a></li>
             </ul>
         </li>
     </ul>
@@ -94,7 +94,10 @@ $("#courseMana").click(function(e) {
 $("#noticeMana").click(function(e) {
     $("#main").load("pages/system/noticeMana.jsp");
 });
-$("#passwordMana").click(function(e) {
+$("#passwordManaN").click(function(e) {
+    $("#main").load("pages/system/password.jsp");
+});
+$("#passwordManaA").click(function(e) {
     $("#main").load("pages/system/password.jsp");
 });
 </script>

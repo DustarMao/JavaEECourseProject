@@ -38,7 +38,7 @@ public class TeachingCourse extends HttpServlet {
 		response.setCharacterEncoding("UTF-8");
 		try {
 			Teacher teacher = ((User)request.getSession().getAttribute("user")).toTeacher();
-			float currentTerm = School.getCurrentSeason();
+			float currentTerm = School.currentSeason;
 			List<Course> courses = teacher.getCourses();
 			JsonList jl = new JsonList();
 			for (Course c : courses) {

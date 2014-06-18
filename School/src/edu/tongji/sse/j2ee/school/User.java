@@ -203,13 +203,13 @@ public class User {
 
 	public Student toStudent() throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException, UserIdNotFound, Exception {
 		if (!isTeacher())
-			return (Student)this;
+			return new Student(this.id);
 		else
 			throw new Exception("It's not a Student");
 	}
 	public Teacher toTeacher() throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException, UserIdNotFound, Exception {
 		if (isTeacher())
-			return (Teacher)this;
+			return new Teacher(this.id);
 		else
 			throw new Exception("It's not a Student");
 	}

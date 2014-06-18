@@ -42,7 +42,7 @@ public class StudiedCourse extends HttpServlet {
 			JsonList terms = new JsonList();
 			courses:
 			for (Course c : courses) {
-				if (c.getSeason() != School.getCurrentSeason() && !c.isApplying()) {
+				if (c.getSeason() != School.currentSeason && !c.isApplying()) {
 					JsonMap jsonCourse = new JsonMap();
 					jsonCourse.put("cID", new JsonVal<Integer>(c.courseId));
 					jsonCourse.put("name", new JsonVal<String>(c.getName()));

@@ -44,7 +44,7 @@ public class GetSelectCourse extends HttpServlet {
 				courseJson.put("name", new JsonVal<String>(c.getName()));
 				courseJson.put("grade", new JsonVal<Float>(c.getGrade()));
 				courseJson.put("place", new JsonVal<String>(c.getPlace()));
-				courseJson.put("time", new JsonVal<String>(c.getWeekday()+c.getTime()));
+				courseJson.put("time", new JsonVal<String>(c.getWeekday()+" "+c.getTime()));
 				courseJson.put("size", new JsonVal<Integer>(c.getSize()));
 				courseJson.put("select", new JsonVal<Boolean>(c.isSelected(student)));
 				coursesJson.add(courseJson);
@@ -52,6 +52,8 @@ public class GetSelectCourse extends HttpServlet {
 			JsonMap json = new JsonMap();
 			json.put("courses", coursesJson);
 			json.put("uID", new JsonVal<Integer>(student.id));
+			response.setCharacterEncoding("UTF-8");
+			response.getWriter().print(json.toJsonStr());
 		} catch (UserIdNotFound | Exception e) {
 			e.printStackTrace();
 		}

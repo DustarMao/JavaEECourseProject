@@ -230,7 +230,7 @@ public class Course {
 		RowSet courseRs = DB.select("course_id", "course");
 		while (courseRs.next()) {
 			Course c = new Course(courseRs.getInt("course_id"));
-			if (c.getSeason() == School.getCurrentSeason() && !c.isApplying())
+			if (c.getSeason() == School.currentSeason && !c.isApplying())
 				courses.add(c);
 		}
 		return courses;

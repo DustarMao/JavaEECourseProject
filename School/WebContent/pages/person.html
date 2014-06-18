@@ -3,7 +3,6 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>个人信息</title>
-<script type="text/javascript" src="../jquery-1.11.1.js"></script>
 <style type="text/css">
 * {
 	font-family: "Microsoft Yahei UI","Microsoft Yahei",Verdana,Simsun,"Segoe UI","Segoe UI Web Regular","Segoe UI Symbol","Helvetica Neue","BBAlpha Sans","S60 Sans",Arial,sans-serif;
@@ -152,22 +151,21 @@ $("#Buttons #cancel").click(function(e) {
     $("#Buttons #change").css("display","inline-block");
 	$("#Buttons #cancel").css("display","none");
 	$("#Buttons #submit").css("display","none");
-    $.getJSON("UserInfor", null, function(json) {
+    $.getJSON("UserInforJson", null, function(json) {
 		$("#pName input").val(json.user.name);
 		$("#pID input").val(json.user.id);
 		$("#pType input").val(json.user.type);
 		$("#pDepart input").val(json.user.department);
 		if (json.user.isAdmin) {
-			$(".student").remove();
-			$(".teacher").remove();
+			$("#PersonInfor .student").remove();
+			$("#PersonInfor .teacher").remove();
 		} else {
 			if (json.user.isTeacher) {
-				
-				$(".student").remove();
+				$("#PersonInfor .student").remove();
 				$("#tTeacherType input").val(json.user.teacherTyper);
 				$("#tStartDate input").val(json.user.startDate);
 			} else {
-				$(".teacher").remove();
+				$("#PersonInfor .teacher").remove();
 				$("#sMajor input").val(json.user.major);
 				$("#sStudyType input").val(json.user.studentType);
 				$("#sStudyYear input").val(json.user.studyYear+"年");
@@ -201,6 +199,7 @@ $("#Buttons #submit").click(function(e) {
 		$("#main").load("pages/person.html");
 	});
 });
+$("#Buttons #cancel").click();
 </script>
 </body>
 </html>

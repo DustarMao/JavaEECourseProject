@@ -62,7 +62,7 @@ public class Teacher extends User {
 	}
 	
 	public Course applyCourse(String name, int weekday, Time time, String place, float grade) throws Exception {
-		return Course.newCourse(Course.getNewId(), name, this, School.getCurrentSeason(), place, weekday, time, grade, true);
+		return Course.newCourse(Course.getNewId(), name, this, School.currentSeason, place, weekday, time, grade, true);
 	}
 
 	public Exam setExam(Course course, String place, Date date, Time time) throws Exception {

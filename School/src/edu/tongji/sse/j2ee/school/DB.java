@@ -25,7 +25,7 @@ public final class DB {
 	public static RowSet select(String select, String from) throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {
 		Connection conn = getConnection();
 		Statement stmt = conn.createStatement();
-		ResultSet rs = stmt.executeQuery("select"+select+" from "+from);
+		ResultSet rs = stmt.executeQuery("select "+select+" from "+from);
 		CachedRowSet crs = new CachedRowSetImpl();
 		crs.populate(rs);
 		stmt.close();
