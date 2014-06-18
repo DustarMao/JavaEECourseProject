@@ -61,6 +61,8 @@ $.getJSON("GetSelectCourse", null, function(json) {
 				cID: couID,
 				sID: stuID,
 				selected: $(this).attr("checked")?true:false
+			}, function(data) {
+				alert(data);
 			});
 		});
 		if (this.select)

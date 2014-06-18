@@ -7,6 +7,6 @@
 <title>用户管理</title>
 </head>
 <body>
-用户管理
+<div id="queryUser"></div>
 </body>
 </html>

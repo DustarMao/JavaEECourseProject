@@ -139,7 +139,7 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `school`.`notice` (
   `notice_id` INT NOT NULL,
   `title` VARCHAR(45) NULL,
-  `href` VARCHAR(45) NULL DEFAULT '#',
+  `href` VARCHAR(300) NULL DEFAULT '#',
   PRIMARY KEY (`notice_id`))
 ENGINE = InnoDB;
 
@@ -169,7 +169,7 @@ ENGINE = InnoDB;
 -- Table `school`.`School`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `school`.`School` (
-  `current_season` FLOAT NULL DEFAULT 2014.1)
+  `current_season` FLOAT NULL DEFAULT 2014.2)
 ENGINE = InnoDB;
 
 insert into user(id,password,name,admin,teacher) values(0,'root','Root',true,true);

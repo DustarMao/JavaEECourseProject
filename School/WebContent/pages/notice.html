@@ -13,14 +13,17 @@
 </style>
 </head>
 <body id="main">
+<div id="showNotice" style="display: none; position: fixed; top: 40px; right: 0; bottom: 0; width: 500px;">
+	<iframe name="showNotice" width="100%" height="100%"></iframe>
+</div>
 <div id="notices">
 </div>
 <script>
 $.getJSON("GetNotices", null, function(json) {
 		$(json.notices).each(function(index,element) {
-			$("#notices").append("<a/>").children().last().attr("id","notice"+this.nID).text(this.title)
+			$("#notices").append("<a/>").children().last().attr("id","notice"+this.nID).attr("href",this.href).attr("target","showNotice").text(this.title)
 				.click(function(e) {
-					$("#notices").load(json.href);
+					$("#showNotice").css("display","block");
 				});
 		});
 });

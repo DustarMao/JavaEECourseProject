@@ -31,7 +31,8 @@ public class JsonList extends LinkedList<JsonObj> implements JsonObj {
 		for (JsonObj jo : this) {
 			str += jo.toJsonStr()+",";
 		}
-		str = str.substring(0, str.length()-1);
+		if (str.length()>1)
+			str = str.substring(0, str.length()-1);
 		str += "]";
 		return str;
 	}

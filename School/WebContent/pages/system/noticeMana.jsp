@@ -7,6 +7,7 @@
 <title>通知管理</title>
 </head>
 <body>
-通知管理
+<div id="addNotice"></div>
+<div id="removeNotice"></div>
 </body>
 </html>
