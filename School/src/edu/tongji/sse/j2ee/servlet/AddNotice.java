@@ -29,6 +29,7 @@ public class AddNotice extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
 		String nTitle = request.getParameter("nTitle");
 		String nHref = request.getParameter("nHref");
 		try {
@@ -36,6 +37,7 @@ public class AddNotice extends HttpServlet {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		response.sendRedirect("index.html");
 	}
 
 }

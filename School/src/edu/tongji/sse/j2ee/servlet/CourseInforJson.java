@@ -58,11 +58,16 @@ public class CourseInforJson extends HttpServlet {
 			}
 			courseInfor.put("students",students);
 			courseInfor.put("isCurrent", new JsonVal<Boolean>(course.getSeason()==School.currentSeason));
-			JsonMap exam = new JsonMap();
-			exam.put("place", new JsonVal<String>(course.getExam().getPlace()));
-			exam.put("date", new JsonVal<String>(course.getExam().getDate().toString()));
-			exam.put("time", new JsonVal<String>(course.getExam().getTime().toString()));
-			courseInfor.put("exam", exam);
+			try {
+				JsonMap exam = new JsonMap();
+				exam.put("place", new JsonVal<String>(course.getExam().getPlace()));
+				exam.put("date", new JsonVal<String>(course.getExam().getDate().toString()));
+				exam.put("time", new JsonVal<String>(course.getExam().getTime().toString()));
+				courseInfor.put("exam", exam);
+			} catch (Exception e) {
+				if (!e.equals(new Exception("ExamNotFound")))
+					throw e;
+			}
 			json.put("CourseInfor", courseInfor);
 			json.put("isTeacher", new JsonVal<Boolean>(((User)request.getSession().getAttribute("user")).isTeacher()));
 			response.getWriter().print(json.toJsonStr());

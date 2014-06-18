@@ -57,7 +57,7 @@ public class UserInforJson extends HttpServlet {
 				userInfor.put("major", new JsonVal<String>(user.toStudent().getMajor()));
 				userInfor.put("enterDate", new JsonVal<String>(user.toStudent().getEnterDate().toString()));
 				userInfor.put("studyYear", new JsonVal<Integer>(user.toStudent().getStudyYear()));
-				userInfor.put("studnetType", new JsonVal<String>(user.toStudent().getStudyType()));
+				userInfor.put("studentType", new JsonVal<String>(user.toStudent().getStudyType()));
 			}
 		} catch (Exception | UserIdNotFound e) {
 			e.printStackTrace();

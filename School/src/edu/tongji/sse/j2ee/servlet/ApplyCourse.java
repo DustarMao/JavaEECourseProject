@@ -35,7 +35,7 @@ public class ApplyCourse extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
 			Course newCourse = Course.newCourse(
-					Integer.parseInt(request.getParameter("cID")),
+					Course.getNewId(),
 					request.getParameter("cName"),
 					((User)request.getSession().getAttribute("user")).toTeacher(),
 					School.currentSeason,
@@ -48,6 +48,7 @@ public class ApplyCourse extends HttpServlet {
 		} catch (Exception | UserIdNotFound e) {
 			e.printStackTrace();
 		}
+		response.sendRedirect("index.html");
 	}
 
 }

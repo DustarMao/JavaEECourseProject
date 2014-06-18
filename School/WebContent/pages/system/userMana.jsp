@@ -57,7 +57,7 @@ button {
 	<form action="AdChUserInfor" method="post">
 		<div id="pID">
         	<label for="pID">ID:</label>
-            <input type="number" class="value" name="pID" disabled />
+            <input type="number" class="value" name="pID" readonly />
         </div>
 		<div id="pType">
 			<label for="pType">类型:</label>

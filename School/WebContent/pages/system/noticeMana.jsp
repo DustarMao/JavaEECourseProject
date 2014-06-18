@@ -62,7 +62,7 @@ button {
 		</div>
 		<div id="nHref">
 			<label for="nHref">链接</label>
-			<input type="url" name="nHref" class="value" value="http://" />
+			<input type="text" name="nHref" class="value" value="" />
 		</div>
 		<div id="Buttons" style="display: block; border-bottom: none;">
 			<button type="submit">提交</button>

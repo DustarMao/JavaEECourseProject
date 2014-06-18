@@ -29,6 +29,8 @@ public class AdChUserInfor extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
+		response.setCharacterEncoding("UTF-8");
 		try {
 			User user = new User(Integer.parseInt(request.getParameter("pID")));
 			String type = request.getParameter("pType");
@@ -43,7 +45,7 @@ public class AdChUserInfor extends HttpServlet {
 			} else {
 				user.setTeacher(false);
 				user.toStudent().setStudyType(request.getParameter("sStudyType"));
-				user.toStudent().setStudyYear(Integer.parseInt(request.getParameter("sStudyYear")));
+				user.toStudent().setStudyYear(Integer.parseInt(request.getParameter("sStudyYear").substring(0, 1)));
 				user.toStudent().setMajor(request.getParameter("sMajor"));
 			}
 		} catch (Exception e) {
@@ -51,6 +53,7 @@ public class AdChUserInfor extends HttpServlet {
 		} catch (UserIdNotFound e) {
 			e.printStackTrace();
 		}
+		response.sendRedirect("index.html");
 	}
 
 }

@@ -43,8 +43,8 @@ public class Notice {
 		RowSet rs = DB.select("notice_id", "notice");
 		int newId = 1;
 		while (rs.next()) {
-			if (rs.getInt("id") >= newId) {
-				newId = rs.getInt("id")+1;
+			if (rs.getInt("notice_id") >= newId) {
+				newId = rs.getInt("notice_id")+1;
 			}
 		}
 		return newId;
@@ -54,7 +54,7 @@ public class Notice {
 		Connection conn = DB.getConnection();
 		if (DB.select("*", "notice", "notice_id = "+id).next())
 			throw new Exception("IdExisted");
-		PreparedStatement pStmt = conn.prepareStatement("insert into notice(id,title,href) values(?,?,?)");
+		PreparedStatement pStmt = conn.prepareStatement("insert into notice(notice_id,title,href) values(?,?,?)");
 		pStmt.setInt(1, id);
 		pStmt.setString(2, title);
 		pStmt.setString(3, href);

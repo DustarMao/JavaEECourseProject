@@ -58,10 +58,7 @@ public class Student extends User {
 	}
 	
 	public void setStudyType(String type) throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException, Exception {
-		if (type.equals("本科") || type.equals("研究生") || type.equals("硕士") || type.equals("博士"))
-			DB.setPara("student", "study_type", type, "id = "+this.id);
-		else
-			throw new Exception("ErrorStudentType");
+		DB.setPara("student", "study_type", type, "id = "+this.id);
 	}
 	
 	public List<Course> getCourses() throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException, Exception {
